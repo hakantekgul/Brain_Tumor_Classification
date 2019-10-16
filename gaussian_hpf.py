@@ -16,7 +16,9 @@ def load_positive(path):
 	positives = []
 	for img in images:
 		imge = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-		positives.append(imge)
+		lowpass = ndimage.gaussian_filter(imge, 25)
+		gauss_highpass = imge - lowpass
+		positives.append(gauss_highpass)
 	return np.array(positives)
 
 def load_negative(path): 
@@ -25,15 +27,18 @@ def load_negative(path):
 	negatives = []
 	for img in images:
 		imge = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-		negatives.append(imge)
+		lowpass = ndimage.gaussian_filter(imge, 25)
+		gauss_highpass = imge - lowpass
+		negatives.append(gauss_highpass)
 	return np.array(negatives)
 
-def show_images(X):
+def show_images(X,title):
 	fig, axes = plt.subplots(5,5,figsize=(9,9),
 		subplot_kw={'xticks':[], 'yticks':[]},
 		gridspec_kw=dict(hspace=0.01, wspace=0.01))
 	for i, ax in enumerate(axes.flat):
 		ax.imshow(X[i],cmap='gray')
+	plt.title(title)
 	plt.show()
 
 print('######## Starting Experiments ###############')
@@ -57,14 +62,14 @@ nsamples, nx, ny = X.shape
 X_flat = X.reshape((nsamples,nx*ny))
 print(X_flat.shape)
 X_train, X_test, y_train, y_test = train_test_split(X_flat,y,test_size=0.3,random_state=0)
-show_images(X)
+show_images(X,'Read Images')
 
 # Show the dimensionality reduction #
 pca = PCA(n_components=0.9)
 X_pca = pca.fit_transform(X_flat)
 approximation = pca.inverse_transform(X_pca)
 approximation = approximation.reshape((nsamples,nx,ny))
-show_images(approximation)
+show_images(approximation,'Reduced Images')
 
 # Start applying supervised learning # 
 scaler = StandardScaler()

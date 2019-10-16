@@ -16,7 +16,10 @@ def load_positive(path):
 	positives = []
 	for img in images:
 		imge = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-		positives.append(imge)
+		lowpass = ndimage.gaussian_filter(imge, 25)
+		lowpass2 = ndimage.gaussian_filter(lowpass, 25)
+		gauss_highpass_lpf = lowpass - lowpass2
+		positives.append(gauss_highpass_lpf)
 	return np.array(positives)
 
 def load_negative(path): 
@@ -25,7 +28,11 @@ def load_negative(path):
 	negatives = []
 	for img in images:
 		imge = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-		negatives.append(imge)
+		kernel = np.array([[-1, -1, -1],[-1,  8, -1],[-1, -1, -1]])
+		lowpass = ndimage.gaussian_filter(imge, 25)
+		lowpass2 = ndimage.gaussian_filter(lowpass, 25)
+		gauss_highpass_lpf = lowpass - lowpass2
+		negatives.append(gauss_highpass_lpf)
 	return np.array(negatives)
 
 def show_images(X):
@@ -60,7 +67,7 @@ X_train, X_test, y_train, y_test = train_test_split(X_flat,y,test_size=0.3,rando
 show_images(X)
 
 # Show the dimensionality reduction #
-pca = PCA(n_components=0.9)
+pca = PCA(n_components=0.95)
 X_pca = pca.fit_transform(X_flat)
 approximation = pca.inverse_transform(X_pca)
 approximation = approximation.reshape((nsamples,nx,ny))
@@ -78,7 +85,7 @@ X_test = scaler.transform(X_test)
 
 neural_net(X_train,y_train,X_test,y_test,learning_rate=1e-04,plotting=False)
 # Now we have normalized datasets. We apply PCA. Note tha PCA above was just for visualization.
-pca = PCA(n_components = 0.9)
+pca = PCA(n_components = 0.95)
 
 pca.fit(X_train)
 
