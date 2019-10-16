@@ -28,7 +28,6 @@ def load_negative(path):
 	negatives = []
 	for img in images:
 		imge = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-		kernel = np.array([[-1, -1, -1],[-1,  8, -1],[-1, -1, -1]])
 		lowpass = ndimage.gaussian_filter(imge, 25)
 		lowpass2 = ndimage.gaussian_filter(lowpass, 25)
 		gauss_highpass_lpf = lowpass - lowpass2
