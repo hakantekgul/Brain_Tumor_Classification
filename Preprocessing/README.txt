@@ -12,3 +12,4 @@ The operations are done in the following order. This means step N was obtained b
 2) grayscale_data : All in 8-bit grayscale
 3) resized_data : All of the same size (h350*w300)
 4) contrasted_data : Applied 1/(1+exp(-0.02(x-127))) contrast function
+5) equalized_data : Applied histogram equalization
