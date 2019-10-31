@@ -43,7 +43,7 @@ dip.title('Image size distribution')
 ###########################
 for directory in dirs:
     for filename in os.listdir(directory):
-        out = Image.open(directory+filename).convert('L')
+        out = Image.open(directory + filename).convert('L')
         filename_without_extension = os.path.splitext(filename)[0]
         if directory == dir_no:
             out.save("../grayscale_data/no/" + filename_without_extension + ".png")
@@ -63,9 +63,11 @@ for directory in dirs:
         out = dip.resize(im, (350, 300), interpolation=cv2.INTER_CUBIC)
         filename_without_extension = os.path.splitext(filename)[0]
         if directory == dir_no:
-            dip.im_write(out, "../resized_data/no/" + filename_without_extension + ".png", quality=95)  # 95 is the best possible image quality
+            dip.im_write(out, "../resized_data/no/" + filename_without_extension + ".png",
+                         quality=95)  # 95 is the best possible image quality
         elif directory == dir_yes:
-            dip.im_write(out, "../resized_data/yes/" + filename_without_extension  + ".png", quality=95)  # 95 is the best possible image quality
+            dip.im_write(out, "../resized_data/yes/" + filename_without_extension + ".png",
+                         quality=95)  # 95 is the best possible image quality
 
 ###########################
 # VARYING CONTRAST        #
@@ -80,6 +82,27 @@ for directory in dirs:
         out = enh.add_contrast(im)
         filename_without_extension = os.path.splitext(filename)[0]
         if directory == dir_no:
-            dip.im_write(out, "../contrast_data/no/" + filename_without_extension + ".png", quality=95)  # 95 is the best possible image quality
+            dip.im_write(out, "../contrast_data/no/" + filename_without_extension + ".png",
+                         quality=95)  # 95 is the best possible image quality
         elif directory == dir_yes:
-            dip.im_write(out, "../contrast_data/yes/" + filename_without_extension  + ".png", quality=95)  # 95 is the best possible image quality
+            dip.im_write(out, "../contrast_data/yes/" + filename_without_extension + ".png",
+                         quality=95)  # 95 is the best possible image quality
+
+###########################
+# HISTOGRAM EQUALIZATION  #
+###########################
+dir_no = "../resized_data/no/"
+dir_yes = "../resized_data/yes/"
+dirs = [dir_no, dir_yes]
+
+for directory in dirs:
+    for filename in os.listdir(directory):
+        im = dip.im_read(directory + filename)
+        out = np.ndarray(im.shape, dtype=np.uint8)
+        out = enh.hist_equalize(im)
+        if directory == dir_no:
+            dip.im_write(out, "../equalized_data/no/" + filename,
+                         quality=95)  # 95 is the best possible image quality
+        elif directory == dir_yes:
+            dip.im_write(out, "../equalized_data/yes/" + filename,
+                         quality=95)  # 95 is the best possible image quality
