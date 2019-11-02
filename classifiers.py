@@ -35,6 +35,7 @@ def svm_classifier(X_train,y_train,X_test,y_test,kernel,gamma,plotting):
 	print('Accuracy for SVM classifier is ' + str(accuracy_score(y_test,y_pred)))
 	print('Training time for SVM classifier: ' + str(train_time) + ' seconds')
 	print('Testing time for SVM classifier: ' + str(endt-stt) + ' seconds')
+	return y_pred
 
 
 def tuned_svm_classifier(X_train,y_train,X_test,y_test,kernel,gamma,plotting):
@@ -62,7 +63,7 @@ def tuned_svm_classifier(X_train,y_train,X_test,y_test,kernel,gamma,plotting):
 	print('Testing time for Tuned SVM classifier: ' + str(endt-stt) + ' seconds')
 	print('Best parameters: ' + str(clf.best_params_))
 	print()
-	return clf.best_params_
+	return clf.best_params_, y_pred
 
 
 def dtree_classifier(X_train,y_train,X_test,y_test,plotting):
@@ -142,6 +143,7 @@ def knn_classifier(X_train,y_train,X_test,y_test,neighbors,plotting):
 	print('Training time for KNN classifier: ' + str(train_time) + ' seconds')
 	print('Testing time for KNN SVM classifier: ' + str(endt-stt) + ' seconds')
 	print()
+	return y_pred
 
 def tuned_knn_classifier(X_train,y_train,X_test,y_test,neighbors,plotting):
 	clf = KNeighborsClassifier()
@@ -167,7 +169,7 @@ def tuned_knn_classifier(X_train,y_train,X_test,y_test,neighbors,plotting):
 	print('Testing time for Tuned KNN classifier: ' + str(endt-stt) + ' seconds')
 	print('Best parameters: ' + str(clf.best_params_))
 	print()
-	return clf.best_params_
+	return clf.best_params_, y_pred
 
 def tuned_weighted_knn_classifier(X_train,y_train,X_test,y_test,neighbors,plotting):
 	clf = KNeighborsClassifier(weights='distance')
@@ -218,6 +220,7 @@ def neural_net(X_train,y_train,X_test,y_test,learning_rate,plotting):
 	print('Training time for Neural Network: ' + str(train_time) + ' seconds')
 	print('Testing time for Neural Network: ' + str(endt-stt) + ' seconds')
 	print()
+	return y_pred
 
 def tuned_neural_net(X_train,y_train,X_test,y_test,learning_rate,plotting):
 	clf = MLPClassifier(activation='relu',max_iter=5000,alpha=1e-05,batch_size='auto',learning_rate='adaptive',learning_rate_init=learning_rate,solver='adam')
@@ -265,7 +268,7 @@ def tuned_neural_net(X_train,y_train,X_test,y_test,learning_rate,plotting):
 	print('Testing time for Tuned NN: ' + str(endt-stt) + ' seconds')
 	print('Best parameters: ' + str(clf.best_params_))
 	print()
-	return clf.best_params_
+	return clf.best_params_, y_pred
 
 
 def boost_classifier(X_train,y_train,X_test,y_test,plotting):

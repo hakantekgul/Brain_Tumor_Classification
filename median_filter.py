@@ -4,12 +4,13 @@ import glob
 import numpy as np
 import scipy.ndimage as ndimage
 from sklearn.decomposition import PCA
+from sklearn.decomposition import NMF
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
 from classifiers import svm_classifier, neural_net, knn_classifier
 
-def gaussian_lpf(sigma,folder_name,show=False):
+def median_filter(sigma,folder_name,show=False):
 	# load the images 
 	def load_positive(path):
 		filenames = glob.glob(path)
@@ -17,8 +18,8 @@ def gaussian_lpf(sigma,folder_name,show=False):
 		positives = []
 		for img in images:
 			imge = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-			gaussian_lowpass = ndimage.gaussian_filter(imge, sigma)
-			positives.append(gaussian_lowpass)
+			median = cv2.medianBlur(imge, sigma)
+			positives.append(median)
 		return np.array(positives)
 
 	def load_negative(path): 
@@ -27,8 +28,8 @@ def gaussian_lpf(sigma,folder_name,show=False):
 		negatives = []
 		for img in images:
 			imge = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-			gaussian_lowpass = ndimage.gaussian_filter(imge, sigma)
-			negatives.append(gaussian_lowpass)
+			median = cv2.medianBlur(imge, sigma)
+			negatives.append(median)
 		return np.array(negatives)
 
 	def show_images(X):
@@ -39,7 +40,6 @@ def gaussian_lpf(sigma,folder_name,show=False):
 			ax.imshow(X[i],cmap='gray')
 		plt.show()
 
-	
 	yes = load_positive(folder_name+"/yes/*.png")
 	no = load_negative(folder_name+"/no/*.png")
 
