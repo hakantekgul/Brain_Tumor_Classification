@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 from sklearn import svm, datasets
-from sklearn.tree import DecisionTreeClassifier, plot_tree
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn import preprocessing

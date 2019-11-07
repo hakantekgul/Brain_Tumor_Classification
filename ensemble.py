@@ -19,29 +19,39 @@ from sklearn.metrics import accuracy_score
 
 
 print('######## Starting Experiments ###############')
+'''
 print('Please enter the folder name to read the images from:')
 folder_name = input()
 
 print('ORIGINAL:')
 predictions_nn, predictions_nn2, predictions_svm, predictions_svm2, predictions_knn, y_test = original(0,folder_name)
 print('LPF:')
-predictions_nn_lpf, predictions_nn2_lpf, predictions_svm_lpf, predictions_svm2_lpf, predictions_knn_lpf = gaussian_lpf(5,folder_name)
+predictions_nn_lpf, predictions_nn2_lpf, predictions_svm_lpf, predictions_svm2_lpf, predictions_knn_lpf = gaussian_lpf(20,folder_name)
 print('HPF:')
-predictions_nn_hpf, predictions_nn2_hpf, predictions_svm_hpf, predictions_svm2_hpf, predictions_knn_hpf = gaussian_hpf(5,folder_name)
+predictions_nn_hpf, predictions_nn2_hpf, predictions_svm_hpf, predictions_svm2_hpf, predictions_knn_hpf = gaussian_hpf(20,folder_name)
 print('LPF+HPF:')
-predictions_nn_lpf_hpf, predictions_nn2_lpf_hpf, predictions_svm_lpf_hpf, predictions_svm2_lpf_hpf, predictions_knn_lpf_hpf = gaussian_lpf_hpf(5,folder_name)
+predictions_nn_lpf_hpf, predictions_nn2_lpf_hpf, predictions_svm_lpf_hpf, predictions_svm2_lpf_hpf, predictions_knn_lpf_hpf = gaussian_lpf_hpf(20,folder_name)
 print('Median:')
-predictions_nn_median, predictions_nn2_median, predictions_svm_median, predictions_svm2_median, predictions_knn_median = median_filter(5,folder_name)
+predictions_nn_median, predictions_nn2_median, predictions_svm_median, predictions_svm2_median, predictions_knn_median = median_filter(20,folder_name)
+'''
 
+# FINAL ENSEMBLE LEARNING with good accuracy results 
+y_test = original(0,'equalized_data')[5]
+predictions_svm_lpf = gaussian_lpf(2,'equalized_data')[2]
+predictions_svm_hpf = gaussian_hpf(15,'equalized_data')[2]
+predictions_svm_lpf_hpf = gaussian_lpf_hpf(15,'equalized_data')[2]
+predictions_knn_lpf_hpf2 = gaussian_lpf_hpf(15,'equalized_data')[4]
+predictions_svm_median = median_filter(15,'equalized_data')[2]
 
-all_pred = np.vstack((predictions_nn, predictions_nn2, predictions_svm, predictions_svm2, predictions_knn
-					,predictions_nn_lpf, predictions_nn2_lpf, predictions_svm_lpf, predictions_svm2_lpf 
-					,predictions_knn_lpf,predictions_nn_hpf, predictions_nn2_hpf, predictions_svm_hpf 
-					,predictions_svm2_hpf, predictions_knn_hpf, predictions_nn_lpf_hpf, predictions_nn2_lpf_hpf
-					,predictions_svm_lpf_hpf, predictions_svm2_lpf_hpf, predictions_knn_lpf_hpf
-					,predictions_nn_median, predictions_nn2_median, predictions_svm_median, predictions_svm2_median, predictions_knn_median))
+predictions_svm_lpf2 = gaussian_lpf(10,'contrast_data')[2]
+predictions_svm_hpf2 = gaussian_hpf(2,'contrast_data')[2]
+predictions_svm_lpf_hpf2 = gaussian_lpf_hpf(2,'contrast_data')[2]
+predictions_svm_median2 = median_filter(3,'contrast_data')[2]
 
-final_pred = np.zeros((len(predictions_nn), ))
+all_pred = np.vstack((predictions_svm_lpf,predictions_svm_hpf,predictions_svm_lpf_hpf,predictions_knn_lpf_hpf2,predictions_svm_median
+                    ,predictions_svm_lpf2,predictions_svm_hpf2,predictions_svm_lpf_hpf2,predictions_svm_median2))
+
+final_pred = np.zeros((len(predictions_svm_lpf),))
 for i in range(final_pred.shape[0]):
     keys = Counter(all_pred[:,i]).keys()
     values = Counter(all_pred[:,i]).values()
@@ -51,4 +61,4 @@ for i in range(final_pred.shape[0]):
     max_idx = np.argmax(values)
     final_pred[i] = keys[max_idx]
 
-print(accuracy_score(y_test,final_pred))
+print('FINAL ACCURACY OF THE ENSEMBLE CLASSIFIER IS: ' + str(accuracy_score(y_test,final_pred)))
