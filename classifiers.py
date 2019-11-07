@@ -14,7 +14,7 @@ import time
 
 def svm_classifier(X_train,y_train,X_test,y_test,kernel,gamma,plotting):
 	# Apply SVM
-	clf = svm.SVC(gamma='auto',random_state=3169,kernel=kernel,C=2)
+	clf = svm.SVC(gamma='scale',random_state=31,kernel=kernel,C=2)
 	st = time.time()
 	clf.fit(X_train,y_train)
 	end = time.time()
@@ -31,10 +31,12 @@ def svm_classifier(X_train,y_train,X_test,y_test,kernel,gamma,plotting):
 		plot_learning_curve(clf,'Learning Curve for SVM', X_train, y_train, (0.7, 1.01), n_jobs=5)
 		plot_validation_curve(X_train,y_train,clf,clf_name)
 		confusion(y_test,y_pred,title)
-
+	'''
 	print('Accuracy for SVM classifier is ' + str(accuracy_score(y_test,y_pred)))
 	print('Training time for SVM classifier: ' + str(train_time) + ' seconds')
 	print('Testing time for SVM classifier: ' + str(endt-stt) + ' seconds')
+	print()
+	'''
 	return y_pred
 
 
@@ -122,7 +124,7 @@ def tuned_dtree_classifier(X_train,y_train,X_test,y_test,plotting):
 
 
 def knn_classifier(X_train,y_train,X_test,y_test,neighbors,plotting):
-	clf = KNeighborsClassifier(n_neighbors=neighbors,weights='distance')
+	clf = KNeighborsClassifier(n_neighbors=13,weights='distance')
 	st = time.time()
 	clf.fit(X_train,y_train)
 	end = time.time()
@@ -138,11 +140,12 @@ def knn_classifier(X_train,y_train,X_test,y_test,neighbors,plotting):
 		plot_learning_curve(clf,'Learning Curve for KNN', X_train, y_train, (0.7, 1.01), n_jobs=4)
 		plot_validation_curve(X_train,y_train,clf,clf_name)
 		confusion(y_test,y_pred,title)
-
+	
 	print('Accuracy for KNN classifier is ' + str(accuracy_score(y_test,y_pred)))
 	print('Training time for KNN classifier: ' + str(train_time) + ' seconds')
 	print('Testing time for KNN SVM classifier: ' + str(endt-stt) + ' seconds')
 	print()
+	
 	return y_pred
 
 def tuned_knn_classifier(X_train,y_train,X_test,y_test,neighbors,plotting):
@@ -215,11 +218,12 @@ def neural_net(X_train,y_train,X_test,y_test,learning_rate,plotting):
 		plot_learning_curve(clf,'Learning Curve for Neural Network', X_train, y_train, (0.7, 1.01), n_jobs=4)
 		plot_validation_curve(X_train,y_train,clf,clf_name)
 		confusion(y_test,y_pred,title)
-
+	'''
 	print('Accuracy for Neural Network is ' + str(accuracy_score(y_test,y_pred)))
 	print('Training time for Neural Network: ' + str(train_time) + ' seconds')
 	print('Testing time for Neural Network: ' + str(endt-stt) + ' seconds')
 	print()
+	'''
 	return y_pred
 
 def tuned_neural_net(X_train,y_train,X_test,y_test,learning_rate,plotting):

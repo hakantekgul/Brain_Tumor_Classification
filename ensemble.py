@@ -16,6 +16,7 @@ from original import original
 from median_filter import median_filter
 from collections import Counter
 from sklearn.metrics import accuracy_score
+import sys
 
 
 print('######## Starting Experiments ###############')
@@ -36,20 +37,38 @@ predictions_nn_median, predictions_nn2_median, predictions_svm_median, predictio
 '''
 
 # FINAL ENSEMBLE LEARNING with good accuracy results 
-y_test = original(0,'equalized_data')[5]
-predictions_svm_lpf = gaussian_lpf(2,'equalized_data')[2]
-predictions_svm_hpf = gaussian_hpf(15,'equalized_data')[2]
-predictions_svm_lpf_hpf = gaussian_lpf_hpf(15,'equalized_data')[2]
-predictions_knn_lpf_hpf2 = gaussian_lpf_hpf(15,'equalized_data')[4]
-predictions_svm_median = median_filter(15,'equalized_data')[2]
+print('EQUALIZED DATA: ')
+y_test = original(0,'equalized_data')
+print('lpf:')
+predictions_svm_lpf = gaussian_lpf(2,'equalized_data')
+print('Accuracy: ' + str(accuracy_score(y_test,predictions_svm_lpf)))
+print('hpf:')
+predictions_svm_hpf = gaussian_hpf(15,'equalized_data')
+print('Accuracy: ' + str(accuracy_score(y_test,predictions_svm_hpf)))
+print('lpf+hpf:')
+predictions_svm_lpf_hpf = gaussian_lpf_hpf(15,'equalized_data')
+print('Accuracy: ' + str(accuracy_score(y_test,predictions_svm_lpf_hpf)))
+print('median:')
+predictions_svm_median = median_filter(15,'equalized_data')
+print('Accuracy: ' + str(accuracy_score(y_test,predictions_svm_median)))
 
-predictions_svm_lpf2 = gaussian_lpf(10,'contrast_data')[2]
-predictions_svm_hpf2 = gaussian_hpf(2,'contrast_data')[2]
-predictions_svm_lpf_hpf2 = gaussian_lpf_hpf(2,'contrast_data')[2]
-predictions_svm_median2 = median_filter(3,'contrast_data')[2]
 
-all_pred = np.vstack((predictions_svm_lpf,predictions_svm_hpf,predictions_svm_lpf_hpf,predictions_knn_lpf_hpf2,predictions_svm_median
-                    ,predictions_svm_lpf2,predictions_svm_hpf2,predictions_svm_lpf_hpf2,predictions_svm_median2))
+print('CONTRAST DATA: ')
+print('lpf:')
+predictions_svm_lpf2 = gaussian_lpf(10,'contrast_data')
+print('Accuracy: ' + str(accuracy_score(y_test,predictions_svm_lpf2)))
+print('hpf:')
+predictions_svm_hpf2 = gaussian_lpf(10,'contrast_data')
+print('Accuracy: ' + str(accuracy_score(y_test,predictions_svm_lpf2)))
+print('lpf+hpf:')
+predictions_svm_lpf_hpf2 = gaussian_lpf_hpf(2,'contrast_data')
+print('Accuracy: ' + str(accuracy_score(y_test,predictions_svm_lpf_hpf2)))
+print('median:')
+predictions_svm_median2 = median_filter(3,'contrast_data')
+print('Accuracy: ' + str(accuracy_score(y_test,predictions_svm_median2)))
+
+all_pred = np.vstack((predictions_svm_lpf,predictions_svm_lpf2,predictions_svm_lpf_hpf,predictions_svm_median,predictions_svm_hpf2
+                    ,predictions_svm_lpf2,predictions_svm_hpf2))
 
 final_pred = np.zeros((len(predictions_svm_lpf),))
 for i in range(final_pred.shape[0]):

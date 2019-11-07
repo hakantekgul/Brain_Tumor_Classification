@@ -6,7 +6,7 @@ import scipy.ndimage as ndimage
 from sklearn.decomposition import PCA
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from classifiers import svm_classifier, neural_net, knn_classifier
 
 def original(sigma,folder_name,show=False):
@@ -40,9 +40,8 @@ def original(sigma,folder_name,show=False):
 	yes = load_positive(folder_name+"/yes/*.png")
 	no = load_negative(folder_name+"/no/*.png")
 
-	print('Number of Positive Images: ' + str(yes.shape[0]))
-	print('Number of Negative Images: ' + str(no.shape[0]))
-
+	#print('Number of Positive Images: ' + str(yes.shape[0]))
+	#print('Number of Negative Images: ' + str(no.shape[0]))
 	yes_labels = np.ones(yes.shape[0])
 	no_labels = np.zeros(no.shape[0])
 
@@ -52,7 +51,7 @@ def original(sigma,folder_name,show=False):
 
 	nsamples, nx, ny = X.shape
 	X_flat = X.reshape((nsamples,nx*ny))
-	print(X_flat.shape)
+	#print(X_flat.shape)
 	X_train, X_test, y_train, y_test = train_test_split(X_flat,y,test_size=0.3,random_state=0)
 	if show == True:
 		show_images(X,'Read Images')
@@ -66,7 +65,7 @@ def original(sigma,folder_name,show=False):
 		show_images(approximation,'Reduced Images')
 
 	# Start applying supervised learning # 
-	scaler = StandardScaler()
+	scaler = MinMaxScaler()
 
 	# Fit on training set only.
 	scaler.fit(X_train)
@@ -74,20 +73,6 @@ def original(sigma,folder_name,show=False):
 	# Apply transform to both the training set and the test set.
 	X_train = scaler.transform(X_train)
 	X_test = scaler.transform(X_test)
-
-	predictions_svm = svm_classifier(X_train,y_train,X_test,y_test,'rbf',gamma='auto',plotting=False)
-	predictions_nn = neural_net(X_train,y_train,X_test,y_test,learning_rate=1e-04,plotting=False)
-	pca = PCA(n_components = 0.95)
-
-	pca.fit(X_train)
-
-	X_train_reduced = pca.transform(X_train)
-	X_test_reduced = pca.transform(X_test)
-
-	predictions_svm2 = svm_classifier(X_train_reduced,y_train,X_test_reduced,y_test,'rbf',gamma='auto',plotting=False)
-	predictions_nn2 = neural_net(X_train_reduced,y_train,X_test_reduced,y_test,learning_rate=1e-04,plotting=False)
-	predictions_knn = knn_classifier(X_train,y_train,X_test,y_test,neighbors=10,plotting=False)
-
-	return predictions_nn, predictions_nn2, predictions_svm, predictions_svm2, predictions_knn, y_test
+	return y_test
 
 
