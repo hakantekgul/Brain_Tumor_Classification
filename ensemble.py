@@ -17,6 +17,7 @@ from median_filter import median_filter
 from collections import Counter
 from sklearn.metrics import accuracy_score
 import sys
+from ML_tools import confusion
 
 
 print('######## Starting Experiments ###############')
@@ -39,33 +40,25 @@ predictions_nn_median, predictions_nn2_median, predictions_svm_median, predictio
 # FINAL ENSEMBLE LEARNING with good accuracy results 
 print('EQUALIZED DATA: ')
 y_test = original(0,'equalized_data')
-print('lpf:')
+print('LPF:')
 predictions_svm_lpf = gaussian_lpf(2,'equalized_data')
-print('Accuracy: ' + str(accuracy_score(y_test,predictions_svm_lpf)))
-print('hpf:')
+print('HPF:')
 predictions_svm_hpf = gaussian_hpf(15,'equalized_data')
-print('Accuracy: ' + str(accuracy_score(y_test,predictions_svm_hpf)))
-print('lpf+hpf:')
+print('LPF+HPF:')
 predictions_svm_lpf_hpf = gaussian_lpf_hpf(15,'equalized_data')
-print('Accuracy: ' + str(accuracy_score(y_test,predictions_svm_lpf_hpf)))
-print('median:')
+print('MEDIAN FILTER:')
 predictions_svm_median = median_filter(15,'equalized_data')
-print('Accuracy: ' + str(accuracy_score(y_test,predictions_svm_median)))
 
 
 print('CONTRAST DATA: ')
-print('lpf:')
+print('LPF:')
 predictions_svm_lpf2 = gaussian_lpf(10,'contrast_data')
-print('Accuracy: ' + str(accuracy_score(y_test,predictions_svm_lpf2)))
-print('hpf:')
+print('HPF:')
 predictions_svm_hpf2 = gaussian_lpf(10,'contrast_data')
-print('Accuracy: ' + str(accuracy_score(y_test,predictions_svm_lpf2)))
-print('lpf+hpf:')
+print('LPF+HPF:')
 predictions_svm_lpf_hpf2 = gaussian_lpf_hpf(2,'contrast_data')
-print('Accuracy: ' + str(accuracy_score(y_test,predictions_svm_lpf_hpf2)))
-print('median:')
+print('MEDIAN FILTER:')
 predictions_svm_median2 = median_filter(3,'contrast_data')
-print('Accuracy: ' + str(accuracy_score(y_test,predictions_svm_median2)))
 
 all_pred = np.vstack((predictions_svm_lpf,predictions_svm_lpf2,predictions_svm_lpf_hpf,predictions_svm_median,predictions_svm_hpf2
                     ,predictions_svm_lpf2,predictions_svm_hpf2))
@@ -79,5 +72,7 @@ for i in range(final_pred.shape[0]):
     values = np.array(list(values))
     max_idx = np.argmax(values)
     final_pred[i] = keys[max_idx]
+
+confusion(y_test,final_pred,'Final Confusion Matrix for Tumor Detection') 
 
 print('FINAL ACCURACY OF THE ENSEMBLE CLASSIFIER IS: ' + str(accuracy_score(y_test,final_pred)))

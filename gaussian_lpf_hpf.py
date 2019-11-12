@@ -60,6 +60,7 @@ def gaussian_lpf_hpf(sigma,folder_name,show=False):
 	nsamples, nx, ny = X.shape
 	X_flat = X.reshape((nsamples,nx*ny))
 	X_train, X_test, y_train, y_test = train_test_split(X_flat,y,test_size=0.3,random_state=0)
+	X_train, X_val, y_train, y_val = train_test_split(X_flat,y,test_size=0.4,random_state=0)
 	if show == True:
 		show_images(X,'Read Images')
 
@@ -79,6 +80,7 @@ def gaussian_lpf_hpf(sigma,folder_name,show=False):
 
 	# Apply transform to both the training set and the test set.
 	X_train = scaler.transform(X_train)
+	X_val = scaler.transform(X_val)
 	X_test = scaler.transform(X_test)
 
 	predictions_svm = svm_classifier(X_train,y_train,X_test,y_test,'rbf',gamma='auto',plotting=False)

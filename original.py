@@ -63,16 +63,6 @@ def original(sigma,folder_name,show=False):
 	approximation = approximation.reshape((nsamples,nx,ny))
 	if show == True:
 		show_images(approximation,'Reduced Images')
-
-	# Start applying supervised learning # 
-	scaler = MinMaxScaler()
-
-	# Fit on training set only.
-	scaler.fit(X_train)
-
-	# Apply transform to both the training set and the test set.
-	X_train = scaler.transform(X_train)
-	X_test = scaler.transform(X_test)
 	return y_test
 
 

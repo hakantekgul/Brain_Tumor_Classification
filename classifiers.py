@@ -29,7 +29,7 @@ def svm_classifier(X_train,y_train,X_test,y_test,kernel,gamma,plotting):
 	print(str(clf.get_params))
 	if plotting == True:
 		plot_learning_curve(clf,'Learning Curve for SVM', X_train, y_train, (0.7, 1.01), n_jobs=5)
-		plot_validation_curve(X_train,y_train,clf,clf_name)
+		#plot_validation_curve(X_train,y_train,clf,clf_name)
 		confusion(y_test,y_pred,title)
 	'''
 	print('Accuracy for SVM classifier is ' + str(accuracy_score(y_test,y_pred)))
