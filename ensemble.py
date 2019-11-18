@@ -18,6 +18,7 @@ from collections import Counter
 from sklearn.metrics import accuracy_score
 import sys
 from ML_tools import confusion
+from comparison import comparison_plot
 
 
 print('######## Starting Experiments ###############')
@@ -36,7 +37,6 @@ predictions_nn_lpf_hpf, predictions_nn2_lpf_hpf, predictions_svm_lpf_hpf, predic
 print('Median:')
 predictions_nn_median, predictions_nn2_median, predictions_svm_median, predictions_svm2_median, predictions_knn_median = median_filter(20,folder_name)
 '''
-
 # FINAL ENSEMBLE LEARNING with good accuracy results 
 print('EQUALIZED DATA: ')
 y_test = original(0,'equalized_data')

@@ -8,6 +8,7 @@ from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from classifiers import svm_classifier, neural_net, knn_classifier
+from comparison import comparison_plot
 
 def gaussian_lpf(sigma,folder_name,show=False):
 	# load the images 
@@ -43,8 +44,8 @@ def gaussian_lpf(sigma,folder_name,show=False):
 	yes = load_positive(folder_name+"/yes/*.png")
 	no = load_negative(folder_name+"/no/*.png")
 
-	#print('Number of Positive Images: ' + str(yes.shape[0]))
-	#print('Number of Negative Images: ' + str(no.shape[0]))
+	print('Number of Positive Images: ' + str(yes.shape[0]))
+	print('Number of Negative Images: ' + str(no.shape[0]))
 
 	yes_labels = np.ones(yes.shape[0])
 	no_labels = np.zeros(no.shape[0])
@@ -52,7 +53,7 @@ def gaussian_lpf(sigma,folder_name,show=False):
 	X = np.vstack((yes,no))
 	y = np.hstack((yes_labels,no_labels))
 
-
+	#comparison_plot(X,y,10,'auto',2,3,1e-04,100)
 	nsamples, nx, ny = X.shape
 	X_flat = X.reshape((nsamples,nx*ny))
 	X_train, X_test, y_train, y_test = train_test_split(X_flat,y,test_size=0.3,random_state=0)
