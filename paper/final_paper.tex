@@ -64,10 +64,17 @@ Our experimental results suggest that LPF+HPF is the best filter to use for tumo
 % DO NOT FORGET TO CITE
 
 \section{Methodology}\label{method}
-% Explain our methodology behind the project
 % Put the flowchart here 
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.4]{flowchart}
+\caption{Flowchart of the project that summarizes our process for our experiments.}
+\end{figure}
+% Explain our methodology behind the project
+% Talk briefly about resizing and grayscale. Maybe put the graph on image sizes? 
 
-% Talk briefly about reizing and grayscale. Maybe put the graph on image sizes? 
+For this project, we used an MRI Scan dataset that has a total of 255 images. The dataset is balanced, where there are 156 positive images and 99 negative images. From the 255 images, 70\% is used for training and 30\% is used for testing. After that, all the images are resized to a certain size through bicubic interpolation and each image is converted to grayscale. This was because the MRI scans usually consist of black and white pixels and RGB colors does not contribute to identification of tumors. Note that the methodology behind this project is shown in Figure 1. 
+
 \subsection{Image Preprocessing}
 % Describe the equalization and contrast images
 
@@ -76,12 +83,18 @@ Our experimental results suggest that LPF+HPF is the best filter to use for tumo
 
 \subsection{Machine Learning}
 % Briefly describe the machine learning algorithms 
+After creating the contrasted, equalized versions of the dataset and applying different image filters, classification experiments are conducted by applying three different machine learning algorithms. As stated before, k-Nearest Neighbors (kNN), Support Vector Machines (SVM), and Artificial Neural Networks (NN) are applied on our data. k-NN is chosen because of its simplicity and the fact that our images are not that complex in nature. SVM, on the other hand, is selected as a machine learning algorithm because it can work very well with low amount of training data and it handles outliers very well. Finally, because image classification is usually done with Neural Networks, we chose NN as the last algorithm. 
+
 % Cross validation
-% Learning and validation curves
+After choosing the algorithms, the dataset is split into training, validation, and testing. As stated before, 70\% of data is used for training and 30\% of training set is used for validation. Then, all the specified machine learning algorithms are applied to the training set and cross-validation approach is used to tune the parameters of each algorithm. After the optimization of the classifiers, accuracy results are collected for different classifiers, different image filters, and their different sigma values. Such results are presented in section 3. 
+
+% Ensemble Learning
+Finally, best 8 classifier/filter/sigma combinations that had the maximum but different accuracies are selected for ensemble learning. Ensemble learning is applied because some of the classifiers had overfitting and there was a need to generalize the data better. At the end, the most common prediction from the 8 classifiers is taken as the final result. In the case of a tie, the classifier predicts a positive instance to lower the number of false negatives.
 
 \section{Experimental Results}\label{results}
 % Provide experimental results here
 % Provide 3 different tables --> cluster all k-NN results together into one table, same for SVM and NN
+% Learning curves, validation curves
 % Final Confusion Matrix 
 
 \section{Analysis of Results}\label{analysis}
