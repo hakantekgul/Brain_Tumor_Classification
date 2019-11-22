@@ -41,13 +41,23 @@ In this project, we detect brain tumors from MRI images with a limited amount of
 \end{abstract}
 
 \begin{IEEEkeywords}
-image classification, ensemble learning, medical imaging, SVM
+Brain Tumor, Image Classification, Ensemble Learning, Medical Imaging, SVM
 \end{IEEEkeywords}
 
 \section{Introduction}\label{intro}
 \subsection{Motivation}
 % Explain the motivation behind project and goal of project
-% Add graphs for increased number of brain tumors etc. 
+Brain cancers and tumors affect the life of humans negatively, as abnormal growth of brain cells damage the functioning of the brain and might even lead to death. With increased usage of cell phones, the incidence rate of brain tumors is predicted to rise rapidly[REF]. Furthermore, the mortality rate of brain cancers have also been increasing constantly in the past decade[REF]. In order to reduce the mortality rate and treat brain tumors, diagnosis should be done in the earliest stage possible. 
+
+Medical imaging is used to diagnose and visualize different types of tumors in the human body. Various medical imaging techniques such as CT Scan, MRI, or X-Ray is used in hospitals for diagnosis. Magnetic Resonance Imaging (MRI) is generally used for brain tumor diagnosis as it shows the inside of the brain with contrast. With the use of MRI, brain tumors are identified as soon as possible by many physicians. However, some MRI scans are hard to read and there is a chance that physicians can make a mistake during diagnosis. When a physician decides that a tumor in the brain does not exist but in reality there is a tumor, a false negative diagnosis occurs and such diagnosis can be catastrophic for the patient. Hence, many different systems have been proposed in the past decade that automatically identifies brain tumors in an MRI scan. Even though most of these approaches have good accuracy and results, they usually need a huge number of training data and computation resources. Therefore, new approaches for brain tumor classification must be considered. 
+
+In this work, we propose to detect brain tumors from MRI images with a limited amount of training data. Specifically, we use image processing and ensemble learning through Support Vector Machines (SVM) to classify whether an MRI scan has a tumor or not. Our main goal in this study is to maximize the classification accuracy and minimize the number of false negatives. We use different image processing techniques, inluding Low-Pass Filter (LPF), High-Pass Filter (HPF), Median Filter (MF), and Low-Pass - High-Pass Filter (LPF+HPF). Then, we apply different machine learning algorithms such as k-NN, SVM, and Neural Networks (NN). To summarize, we make three main contributions in this paper:
+\begin{itemize}
+  \item We apply different image filters to MRI scans and analyze the best processing technique for tumor detection.
+  \item We experiments with three different machine learning algorithms and state their accuracy for differrent image processing techniques.
+  \item We propose an ensemble learning approach that successfully identifies a tumor in the brain with a minimum number of false negatives. 
+\end{itemize}
+Our experimental results suggest that LPF+HPF is the best filter to use for tumor detection, with an average classification accuracy of 84\%. Additionaly, we observed that Support Vector Machines (SVM) gives the optimal results in terms of classification. Finally, our ensemble learning approach that is based on different filters and Support Vector Machines outputs a classification accuracy of 87\% and a 2\% false negative rate. 
 
 \subsection{Related Work} 
 % Discuss some related work. Provide around 5-6 projects about tumor classification and summarize their improvements/results
