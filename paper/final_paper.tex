@@ -47,9 +47,9 @@ Brain Tumor, Image Classification, Ensemble Learning, Medical Imaging, SVM
 \section{Introduction}\label{intro}
 \subsection{Motivation}
 % Explain the motivation behind project and goal of project
-Brain cancers and tumors affect the life of humans negatively, as abnormal growth of brain cells damage the functioning of the brain and might even lead to death. With increased usage of cell phones, the incidence rate of brain tumors is predicted to rise rapidly[REF]. Furthermore, the mortality rate of brain cancers have also been increasing constantly in the past decade[REF]. In order to reduce the mortality rate and treat brain tumors, diagnosis should be done in the earliest stage possible. 
+Brain cancers and tumors affect the life of humans negatively, as abnormal growth of brain cells damage the functioning of the brain and might even lead to death. With increased usage of cell phones, the incidence rate of brain tumors is predicted to rise rapidly \cite{b1}. Furthermore, the mortality rate of brain cancers have also been increasing constantly in the past decade \cite{b2}. In order to reduce the mortality rate and treat brain tumors, diagnosis should be done in the earliest stage possible. 
 
-Medical imaging is used to diagnose and visualize different types of tumors in the human body. Various medical imaging techniques such as CT Scan, MRI, or X-Ray is used in hospitals for diagnosis. Magnetic Resonance Imaging (MRI) is generally used for brain tumor diagnosis as it shows the inside of the brain with contrast. With the use of MRI, brain tumors are identified as soon as possible by many physicians. However, some MRI scans are hard to read and there is a chance that physicians can make a mistake during diagnosis. When a physician decides that a tumor in the brain does not exist but in reality there is a tumor, a false negative diagnosis occurs and such diagnosis can be catastrophic for the patient. Hence, many different systems have been proposed in the past decade that automatically identifies brain tumors in an MRI scan. Even though most of these approaches have good accuracy and results, they usually need a huge number of training data and computation resources. Therefore, new approaches for brain tumor classification must be considered. 
+Medical imaging is used to diagnose and visualize different types of tumors in the human body. Various medical imaging techniques such as CT Scan, MRI, or X-Ray is used in hospitals for diagnosis. Magnetic Resonance Imaging (MRI) is generally used for brain tumor diagnosis as it shows the inside of the brain with contrast \cite{b7}. With the use of MRI, brain tumors are identified as soon as possible by many physicians. However, some MRI scans are hard to read and there is a chance that physicians can make a mistake during diagnosis. When a physician decides that a tumor in the brain does not exist but in reality there is a tumor, a false negative diagnosis occurs and such diagnosis can be catastrophic for the patient. Hence, many different systems have been proposed in the past decade that automatically identifies brain tumors in an MRI scan. Even though most of these approaches have good accuracy and results, they usually need a huge number of training data and computation resources. Therefore, new approaches for brain tumor classification must be considered. 
 
 In this work, we propose to detect brain tumors from MRI images with a limited amount of training data. Specifically, we use image processing and ensemble learning through Support Vector Machines (SVM) to classify whether an MRI scan has a tumor or not. Our main goal in this study is to maximize the classification accuracy and minimize the number of false negatives. We use different image processing techniques, inluding Low-Pass Filter (LPF), High-Pass Filter (HPF), Median Filter (MF), and Low-Pass - High-Pass Filter (LPF+HPF). Then, we apply different machine learning algorithms such as k-NN, SVM, and Neural Networks (NN). To summarize, we make three main contributions in this paper:
 \begin{itemize}
@@ -62,6 +62,14 @@ Our experimental results suggest that LPF+HPF is the best filter to use for tumo
 \subsection{Related Work} 
 % Discuss some related work. Provide around 5-6 projects about tumor classification and summarize their improvements/results
 % DO NOT FORGET TO CITE
+The development of brain tumor recoginition has been increasing in the past decade. Many appraoches have been proposed that build different models for MRI scan classification. Some approaches use image processing techniques, whereas some approaches are solely focused on deep learning to identify tumors. Some of the related work to our project is presented below. 
+
+Firstly, Praveen \cite{b3} introduced the use of image processing and segmentation for the problem of tumor detection. Different imaging filters such as median filter, wiener filter are used to process images and different edge detection and feature extraction techniques are used for classification. Then, Gaikwad et. al \cite{b4} experimented with dimensionality reduction of MRI images using Principal Component Analysis (PCA) and developed a Probabilistic Neural Network for tumor classification. 
+
+Apart from image processing or segmentation, Ari et. al \cite{b5} used deep learning to classify brain tumors by focusing on extreme learning machine local receptive fields (ELM-LRF) based tumor classification. Their work showed very promising accuracy results. Similarly, Seetha et. al \cite{b6} used convolutional neural networks with deep architecture and small kernels to classify brain tumors. By setting the weights of neurons to small values, their results were also very promising. The only problem with deep learning approaches is the fact that they usually need lots of training data. 
+
+As compared to these works, we experiments with a wide range of image processing techniques and we analyze the best imageing filter to use for tumor detection. Even though our accuracy value is not very high compared to works that used deep learning, we propose a classifier that can work well with limited amount of training data. To the best of our knowledge, this project is the first to apply ensemble learning for tumor identification. Finally, this work is also the only one that tries to minimize false negatives as well as accuracy, and discuss the results. Hence, we believe our contribution to brain tumor classification is significant.
+
 
 \section{Methodology}\label{method}
 % Put the flowchart here 
@@ -77,9 +85,12 @@ For this project, we used an MRI Scan dataset that has a total of 255 images. Th
 
 \subsection{Image Preprocessing}
 % Describe the equalization and contrast images
+% Add histograms, equalized and contrast image examples, visualize sigmoid etc. 
 
 \subsection{Image Filtering}
 % Describe and explain the different filters 
+% Provide examples of filtered images (one image from each filtering is fine)
+% Note that, the filters used are GAUSSIAN --> would be nice to visualize the filters in a graph
 
 \subsection{Machine Learning}
 % Briefly describe the machine learning algorithms 
@@ -109,42 +120,15 @@ Finally, best 8 classifier/filter/sigma combinations that had the maximum but di
 % Briefly summarize main ideas of project
 % Discuss future work such as tumor segmentation
 
-\section*{Acknowledgment}
-
-The preferred spelling of the word ``acknowledgment'' in America is without 
-an ``e'' after the ``g''. Avoid the stilted expression ``one of us (R. B. 
-G.) thanks $\ldots$''. Instead, try ``R. B. G. thanks$\ldots$''. Put sponsor 
-acknowledgments in the unnumbered footnote on the first page.
-
-\section*{References}
-
-Please number citations consecutively within brackets \cite{b1}. The 
-sentence punctuation follows the bracket \cite{b2}. Refer simply to the reference 
-number, as in \cite{b3}---do not use ``Ref. \cite{b3}'' or ``reference \cite{b3}'' except at 
-the beginning of a sentence: ``Reference \cite{b3} was the first $\ldots$''
-
-Number footnotes separately in superscripts. Place the actual footnote at 
-the bottom of the column in which it was cited. Do not put footnotes in the 
-abstract or reference list. Use letters for table footnotes.
-
-Unless there are six authors or more give all authors' names; do not use 
-``et al.''. Papers that have not been published, even if they have been 
-submitted for publication, should be cited as ``unpublished'' \cite{b4}. Papers 
-that have been accepted for publication should be cited as ``in press'' \cite{b5}. 
-Capitalize only the first word in a paper title, except for proper nouns and 
-element symbols.
-
-For papers published in translation journals, please give the English 
-citation first, followed by the original foreign-language citation \cite{b6}.
 
 \begin{thebibliography}{00}
-\bibitem{b1} G. Eason, B. Noble, and I. N. Sneddon, ``On certain integrals of Lipschitz-Hankel type involving products of Bessel functions,'' Phil. Trans. Roy. Soc. London, vol. A247, pp. 529--551, April 1955.
-\bibitem{b2} J. Clerk Maxwell, A Treatise on Electricity and Magnetism, 3rd ed., vol. 2. Oxford: Clarendon, 1892, pp.68--73.
-\bibitem{b3} I. S. Jacobs and C. P. Bean, ``Fine particles, thin films and exchange anisotropy,'' in Magnetism, vol. III, G. T. Rado and H. Suhl, Eds. New York: Academic, 1963, pp. 271--350.
-\bibitem{b4} K. Elissa, ``Title of paper if known,'' unpublished.
-\bibitem{b5} R. Nicole, ``Title of paper with only first word capitalized,'' J. Name Stand. Abbrev., in press.
-\bibitem{b6} Y. Yorozu, M. Hirano, K. Oka, and Y. Tagawa, ``Electron spectroscopy studies on magneto-optical media and plastic substrate interface,'' IEEE Transl. J. Magn. Japan, vol. 2, pp. 740--741, August 1987 [Digests 9th Annual Conf. Magnetics Japan, p. 301, 1982].
-\bibitem{b7} M. Young, The Technical Writer's Handbook. Mill Valley, CA: University Science, 1989.
+\bibitem{b1} Hallberg Ö, Morgan LL (2011) The Potential Impact of Mobile Phone Use on Trends in Brain and CNS Tumors. J Neurol Neurophysiol S5. doi:10.4172/2155-9562.S5-003
+\bibitem{b2} Australian Institute of Health and Welfare 2019. Cancer in Australia 2019. Cancer series no.119. Cat. no. CAN 122. Canberra: AIHW.
+\bibitem{b3} Gamage, Praveen. (2017). Identification of Brain Tumor using Image Processing Techniques. 
+\bibitem{b4} Gaikwad, Sonali \& Joshi, M.. (2015). Brain Tumor Classification using Principal Component Analysis and Probabilistic Neural Network. International Journal of Computer Applications. 120. 5-9. 10.5120/21205-3885.
+\bibitem{b5} Ari, Ali \& Hanbay, Davut. (2018). Deep learning based brain tumor classification and detection system. TURKISH JOURNAL OF ELECTRICAL ENGINEERING \& COMPUTER SCIENCES. 26. 2275-2286. 10.3906/elk-1801-8.
+\bibitem{b6} Seetha, J. \& Raja, S.. (2018). Brain Tumor Classification Using Convolutional Neural Networks. Biomedical and Pharmacology Journal. 11. 1457-1461. 10.13005/bpj/1511. 
+\bibitem{b7} Kernick DP, Ahmed F, Bahra A, et al. Imaging patients with suspected brain tumour: guidance for primary care. Br J Gen Pract. 2008;58(557):880–885. doi:10.3399/bjgp08X376203.
 \end{thebibliography}
 
 \end{document}
