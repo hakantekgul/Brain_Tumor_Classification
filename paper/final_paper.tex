@@ -89,7 +89,7 @@ For this project, we used an MRI Scan dataset that has a total of 255 images. Th
 To be fed into the classifier, the images had to be resized to a common size. In our case, we resized them all to $350\times300\: px$ around which most images were distributed (Figure 2). The method used is either downsampling for downscaling or upsampling the images using bicubic interpolation for upscaling.
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.6]{figures/Image_size_distribution.png}
+\includegraphics[scale=0.5]{figures/Image_size_distribution.png}
 \caption{Original image size distribution in pixels.}
 \end{figure}
 
@@ -98,7 +98,7 @@ From this homogeneous dataset, two sub-datasets were created : the first one add
 In the following example (Figure 3), the tumor stands out by the luminance difference with healthy brain tissue. Thus our hypothesis is that adding contrast can help emphasizing the even more the tumor. The method used is a sigmoïd transformation : for every pixel $x \in [0;255]$, $$x\leftarrow x\times \frac{1}{1+e^{-0.02(x-127)}}$$
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.4]{figures/Contrasting.png}
+\includegraphics[scale=0.33]{figures/Contrasting.png}
 \caption{Sample image of a brain having tumor and associated histogram before and after adding contrast.}
 \end{figure}
 
@@ -106,7 +106,7 @@ In the following example (Figure 3), the tumor stands out by the luminance diffe
 In the following example (Figure 4), there is no clear tumor (and in fact there is no tumor, but we don't know it beforehand), and most pixels are concentrated around a certain gray value, making it difficult to distinguish details. Thus our hypothesis is that histogram equalization can help distinguishing details, for example distinguishing a tumor when its luminance is close to healthy brain tissue.
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.4]{figures/Equalizing.png}
+\includegraphics[scale=0.33]{figures/Equalizing.png}
 \caption{Sample image of a brain without tumor and associated histogram before and after equalizing histograms.}
 \end{figure}
 

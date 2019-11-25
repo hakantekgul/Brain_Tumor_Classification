@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  24 NOV 2019 12:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  25 NOV 2019 16:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -506,7 +506,34 @@ File: flowchart.png Graphic file (type png)
 <use flowchart.png>
 Package pdftex.def Info: flowchart.png  used on input line 78.
 (pdftex.def)             Requested size: 63.43585pt x 146.54489pt.
- [2 <./flowchart.png>]
+<figures/Image_size_distribution.png, id=13, 462.528pt x 346.896pt>
+File: figures/Image_size_distribution.png Graphic file (type png)
+<use figures/Image_size_distribution.png>
+Package pdftex.def Info: figures/Image_size_distribution.png  used on input lin
+e 92.
+(pdftex.def)             Requested size: 231.26343pt x 173.44757pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 96--97
+
+ []
+
+<figures/Contrasting.png, id=14, 642.14906pt x 424.58624pt>
+File: figures/Contrasting.png Graphic file (type png)
+<use figures/Contrasting.png>
+Package pdftex.def Info: figures/Contrasting.png  used on input line 101.
+(pdftex.def)             Requested size: 211.90984pt x 140.11389pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<figures/Equalizing.png, id=15, 639.13782pt x 432.86719pt>
+File: figures/Equalizing.png Graphic file (type png)
+<use figures/Equalizing.png>
+Package pdftex.def Info: figures/Equalizing.png  used on input line 109.
+(pdftex.def)             Requested size: 210.91612pt x 142.8466pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[2 <./flowchart.png> <./figures/Image_size_distribution.png>]
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -518,27 +545,31 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[3
-
-] (./final_paper.aux) ) 
+[3 <./figures/Contrasting.png> <./figures/Equalizing.png>] (./final_paper.aux) 
+) 
 Here is how much of TeX's memory you used:
- 4407 strings out of 492616
- 63925 string characters out of 6129482
+ 4424 strings out of 492616
+ 64375 string characters out of 6129482
  138126 words of memory out of 5000000
- 8265 multiletter control sequences out of 15000+600000
+ 8278 multiletter control sequences out of 15000+600000
  40038 words of font info for 87 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,11n,35p,1100b,302s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/base
-/8r.enc}</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
-7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></us
-r/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/t
-exlive/2019/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/201
-9/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on final_paper.pdf (3 pages, 93180 bytes).
+{/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/te
+xlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
+live/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texli
+ve/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive
+/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/20
+19/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/201
+9/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2019/
+texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2019/texmf-dist
+/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/ty
+pe1/urw/times/utmr8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/ti
+mes/utmri8a.pfb>
+Output written on final_paper.pdf (3 pages, 424723 bytes).
 PDF statistics:
- 38 PDF objects out of 1000 (max. 8388607)
- 25 compressed objects within 1 object stream
+ 64 PDF objects out of 1000 (max. 8388607)
+ 40 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
