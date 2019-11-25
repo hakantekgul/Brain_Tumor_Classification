@@ -68,7 +68,7 @@ Firstly, Praveen \cite{b3} introduced the use of image processing and segmentati
 
 Apart from image processing or segmentation, Ari et. al \cite{b5} used deep learning to classify brain tumors by focusing on extreme learning machine local receptive fields (ELM-LRF) based tumor classification. Their work showed very promising accuracy results. Similarly, Seetha et. al \cite{b6} used convolutional neural networks with deep architecture and small kernels to classify brain tumors. By setting the weights of neurons to small values, their results were also very promising. The only problem with deep learning approaches is the fact that they usually need lots of training data. 
 
-As compared to these works, we experiments with a wide range of image processing techniques and we analyze the best imageing filter to use for tumor detection. Even though our accuracy value is not very high compared to works that used deep learning, we propose a classifier that can work well with limited amount of training data. To the best of our knowledge, this project is the first to apply ensemble learning for tumor identification. Finally, this work is also the only one that tries to minimize false negatives as well as accuracy, and discuss the results. Hence, we believe our contribution to brain tumor classification is significant.
+As compared to these works, we experiments with a wide range of image processing techniques and we analyze the best imaging filter to use for tumor detection. Even though our accuracy value is not very high compared to works that used deep learning, we propose a classifier that can work well with limited amount of training data. To the best of our knowledge, this project is the first to apply ensemble learning for tumor identification. Finally, this work is also the only one that tries to minimize false negatives as well as accuracy, and discuss the results. Hence, we believe our contribution to brain tumor classification is significant.
 
 
 \section{Methodology}\label{method}
@@ -112,6 +112,7 @@ In the following example (Figure 4), there is no clear tumor (and in fact there 
 
 \subsection{Image Filtering}
 % Describe and explain the different filters 
+A low pass filter is used for smoothing the images and it also helps in removing the high frequency components and noise in the image. We have applied this filter with various sigma values to the contrast and equalized images.
 % Provide examples of filtered images (one image from each filtering is fine)
 % Note that, the filters used are GAUSSIAN --> would be nice to visualize the filters in a graph
 
