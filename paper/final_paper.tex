@@ -113,8 +113,42 @@ In the following example (Figure 4), there is no clear tumor (and in fact there 
 \subsection{Image Filtering}
 % Describe and explain the different filters 
 A low pass filter is used for smoothing the images and it also helps in removing the high frequency components and noise in the image. We have applied this filter with various sigma values to the contrast and equalized images.
+We have also used the high pass filter with various sigma values on the contrast and equalized images. It helps us to do the training of dataset and classification on the tumor region in the image using the high frequency content in the image.
+We have also combined the above two filters to filter the images in our dataset. So, we first applied the low pass filter and then the high pass filter and it helped us to remove the noise in the images and then perform the classification on the relatively high frequency content in the image.
+Finally we have used the median filter to filter the images as it gives good quality images for the classification part of our project. It takes the median of the neighborhood of each of the pixels in the image and replaces the specified pixel by that value. 
 % Provide examples of filtered images (one image from each filtering is fine)
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.33]{figures/lpf.JPG}
+\caption{Low pass filtered images.}
+\end{figure}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.30]{figures/hpf.JPG}
+\caption{High pass filtered images.}
+\end{figure}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.33]{figures/lpf_hpf.JPG}
+\caption{Low pass + high pass filtered images.}
+\end{figure}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.4]{figures/median.JPG}
+\caption{Median filtered images.}
+\end{figure}
+
 % Note that, the filters used are GAUSSIAN --> would be nice to visualize the filters in a graph
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.4]{figures/hpf_filter.JPG}
+\caption{Visualization of HPF.}
+\end{figure}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.4]{figures/lpf_filter.JPG}
+\caption{Visualization of LPF.}
+\end{figure}
 
 \subsection{Machine Learning}
 % Briefly describe the machine learning algorithms 
