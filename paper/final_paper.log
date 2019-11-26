@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  25 NOV 2019 23:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  26 NOV 2019 11:17
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -537,22 +537,22 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 File: figures/lpf.JPG Graphic file (type jpg)
 <use figures/lpf.JPG>
 Package pdftex.def Info: figures/lpf.JPG  used on input line 122.
-(pdftex.def)             Requested size: 92.66397pt x 76.01923pt.
+(pdftex.def)             Requested size: 120.74124pt x 99.05313pt.
 <figures/hpf.JPG, id=17, 319.1925pt x 255.20343pt>
 File: figures/hpf.JPG Graphic file (type jpg)
 <use figures/hpf.JPG>
 Package pdftex.def Info: figures/hpf.JPG  used on input line 127.
-(pdftex.def)             Requested size: 95.75848pt x 76.56161pt.
+(pdftex.def)             Requested size: 127.67473pt x 102.07956pt.
 <figures/lpf_hpf.JPG, id=18, 293.59688pt x 236.38312pt>
 File: figures/lpf_hpf.JPG Graphic file (type jpg)
 <use figures/lpf_hpf.JPG>
 Package pdftex.def Info: figures/lpf_hpf.JPG  used on input line 132.
-(pdftex.def)             Requested size: 96.88725pt x 78.00667pt.
+(pdftex.def)             Requested size: 126.24419pt x 101.64275pt.
 <figures/median.JPG, id=19, 254.45062pt x 205.5178pt>
 File: figures/median.JPG Graphic file (type jpg)
 <use figures/median.JPG>
 Package pdftex.def Info: figures/median.JPG  used on input line 137.
-(pdftex.def)             Requested size: 101.77844pt x 82.20566pt.
+(pdftex.def)             Requested size: 109.41162pt x 88.37093pt.
 [2 <./flowchart.png> <./figures/Image_size_distribution.png>]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -616,7 +616,7 @@ msfonts/cm/cmsy7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/
 utmb8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmbi8a.pf
 b></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/lo
 cal/texlive/2019/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on final_paper.pdf (4 pages, 710055 bytes).
+Output written on final_paper.pdf (4 pages, 710041 bytes).
 PDF statistics:
  73 PDF objects out of 1000 (max. 8388607)
  42 compressed objects within 1 object stream
