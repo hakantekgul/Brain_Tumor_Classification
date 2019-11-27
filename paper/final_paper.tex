@@ -7,6 +7,8 @@
 \usepackage{graphicx}
 \usepackage{textcomp}
 \usepackage{xcolor}
+\usepackage{multirow}
+
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
@@ -167,19 +169,19 @@ Finally, best 8 classifier/filter/sigma combinations that had the maximum but di
 \hline
  SVM & LPF &LPF+HPF &HPF & Median\\
  \hline
- \multirow{Sigma = 2} &0.8289 &0.8157& 0.75&0.7916\\ 
+ \multirow{2}{*}{Sigma = 2} &0.8289 &0.8157& 0.75&0.7916\\ 
  &0.8157	&0.8421&	0.77&0.8151\\
 \hline
-\multirow{}{}{Sigma = 5}  & 0.8289&	0.8354	&0.71	&0.8026\\
+\multirow{2}{*}{Sigma = 5}  & 0.8289&	0.8354	&0.71	&0.8026\\
 &  0.8289& 0.8289	& 0.7894	&0.8026\\
 \hline
-\multirow{}{}{Sigma = 10}  &	0.8157	&0.8157&	0.8157	&0.8026\\
+\multirow{2}{*}{Sigma = 10}  &	0.8157	&0.8157&	0.8157	&0.8026\\
 &	0.8421	& 0.7891&0.8373	& 0.8026\\
 \hline
-\multirow{}{}{Sigma = 15} &	0.8157&	0.8421&	0.8555&	0.8157\\
+\multirow{2}{*}{Sigma = 15} &	0.8157&	0.8421&	0.8555&	0.8157\\
 & 0.8157&	 0.8289&	  0.8157&  0.7894\\
  \hline
-\end{tabular}
+\end{tabular} \\
 \caption{SVM results}
 \label{table:1}
 \end{table}
@@ -189,16 +191,16 @@ Finally, best 8 classifier/filter/sigma combinations that had the maximum but di
 \hline
  KNN & LPF &LPF+HPF &HPF & Median\\
  \hline
- \multirow{Sigma = 2} & 0.6184 & 0.8026 & 0.8151  & 0.6050 \\ 
+ \multirow{2}{*}{Sigma = 2} & 0.6184 & 0.8026 & 0.8151  & 0.6050 \\ 
 & 0.7894 &  0.8026 & 0.7243 & 0.7894 \\
 \hline
-\multirow{}{}{Sigma = 5} & 0.6728 & 0.8151 & 0.789  & 0.6050  \\ 
+\multirow{2}{*}{Sigma = 5} & 0.6728 & 0.8151 & 0.789  & 0.6050  \\ 
  &0.7368 &  0.8151 & 0.8289 &  0.8026 \\ 
 \hline
-\multirow{}{}{Sigma = 10} & 0.7105 & 0.8151 & 0.7140  & 0.5526  \\
+\multirow{2}{*}{Sigma = 10} & 0.7105 & 0.8151 & 0.7140  & 0.5526  \\
 & 0.7368 &  0.8289 & 0.7519 &  0.7763 \\
 \hline
-\multirow{}{}{Sigma = 15} & 0.7763  & 0.8233  & 0.6766 & 0.6050 \\
+\multirow{2}{*}{Sigma = 15} & 0.7763  & 0.8233  & 0.6766 & 0.6050 \\
 & 0.7336 &  0.8684 & 0.7243 &  0.7763 \\
  \hline
 \end{tabular}
@@ -211,16 +213,16 @@ Finally, best 8 classifier/filter/sigma combinations that had the maximum but di
 \hline
 NN & LPF &LPF+HPF &HPF & Median\\
  \hline
- \multirow{Sigma = 2} & 0.8026  & 0.7894  & 0.6315& 0.7763  \\
+ \multirow{2}{*}{Sigma = 2} & 0.8026  & 0.7894  & 0.6315& 0.7763  \\
  & 0.7763 &  0.8026 & 0.7243 &  0.7894 \\
 \hline
-\multirow{}{}{Sigma = 5} & 0.7763 & 0.7894 & 0.6315& 0.7376  \\
+\multirow{2}{*}{Sigma = 5} & 0.7763 & 0.7894 & 0.6315& 0.7376  \\
  &  0.7519 & 0.8026 &  0.7376 & 0.7376 \\
 \hline
-\multirow{}{}{Sigma = 10}  & 0.6315& 0.8032  & 0.6982 & 0.7376\\
+\multirow{2}{*}{Sigma = 10}  & 0.6315& 0.8032  & 0.6982 & 0.7376\\
  & 0.7368 & 0.7894 & 0.7376 & 0.7376 \\
 \hline
-\multirow{}{}{Sigma = 15} & 0.6050 & 0.7763 & 0.7336 & 0.6315 \\
+\multirow{2}{*}{Sigma = 15} & 0.6050 & 0.7763 & 0.7336 & 0.6315 \\
 &  0.7763 &  0.7763 & 0.7336 &  0.6315 \\
  \hline
 \end{tabular}
