@@ -161,6 +161,72 @@ After choosing the algorithms, the dataset is split into training, validation, a
 Finally, best 8 classifier/filter/sigma combinations that had the maximum but different accuracies are selected for ensemble learning. Ensemble learning is applied because some of the classifiers had overfitting and there was a need to generalize the data better. At the end, the most common prediction from the 8 classifiers is taken as the final result. In the case of a tie, the classifier predicts a positive instance to lower the number of false negatives.
 
 \section{Experimental Results}\label{results}
+\begin{table}[h!]
+\centering
+\begin{tabular}{ |p{1.4cm}||p{1.1cm}|p{1.3cm}|p{1.1cm}|p{1cm}|  }
+\hline
+ SVM & LPF &LPF+HPF &HPF & Median\\
+ \hline
+ \multirow{Sigma = 2} &0.8289 &0.8157& 0.75&0.7916\\ 
+ &0.8157	&0.8421&	0.77&0.8151\\
+\hline
+\multirow{}{}{Sigma = 5}  & 0.8289&	0.8354	&0.71	&0.8026\\
+&  0.8289& 0.8289	& 0.7894	&0.8026\\
+\hline
+\multirow{}{}{Sigma = 10}  &	0.8157	&0.8157&	0.8157	&0.8026\\
+&	0.8421	& 0.7891&0.8373	& 0.8026\\
+\hline
+\multirow{}{}{Sigma = 15} &	0.8157&	0.8421&	0.8555&	0.8157\\
+& 0.8157&	 0.8289&	  0.8157&  0.7894\\
+ \hline
+\end{tabular}
+\caption{SVM results}
+\label{table:1}
+\end{table}
+\begin{table}[h!]
+\centering
+\begin{tabular}{ |p{1.4cm}||p{1.1cm}|p{1.3cm}|p{1.1cm}|p{1cm}|  }
+\hline
+ KNN & LPF &LPF+HPF &HPF & Median\\
+ \hline
+ \multirow{Sigma = 2} & 0.6184 & 0.8026 & 0.8151  & 0.6050 \\ 
+& 0.7894 &  0.8026 & 0.7243 & 0.7894 \\
+\hline
+\multirow{}{}{Sigma = 5} & 0.6728 & 0.8151 & 0.789  & 0.6050  \\ 
+ &0.7368 &  0.8151 & 0.8289 &  0.8026 \\ 
+\hline
+\multirow{}{}{Sigma = 10} & 0.7105 & 0.8151 & 0.7140  & 0.5526  \\
+& 0.7368 &  0.8289 & 0.7519 &  0.7763 \\
+\hline
+\multirow{}{}{Sigma = 15} & 0.7763  & 0.8233  & 0.6766 & 0.6050 \\
+& 0.7336 &  0.8684 & 0.7243 &  0.7763 \\
+ \hline
+\end{tabular}
+\caption{KNN results}
+\label{table:2}
+\end{table}
+\begin{table}[h!]
+\centering
+\begin{tabular}{ |p{1.4cm}||p{1.1cm}|p{1.3cm}|p{1.1cm}|p{1cm}|  }
+\hline
+NN & LPF &LPF+HPF &HPF & Median\\
+ \hline
+ \multirow{Sigma = 2} & 0.8026  & 0.7894  & 0.6315& 0.7763  \\
+ & 0.7763 &  0.8026 & 0.7243 &  0.7894 \\
+\hline
+\multirow{}{}{Sigma = 5} & 0.7763 & 0.7894 & 0.6315& 0.7376  \\
+ &  0.7519 & 0.8026 &  0.7376 & 0.7376 \\
+\hline
+\multirow{}{}{Sigma = 10}  & 0.6315& 0.8032  & 0.6982 & 0.7376\\
+ & 0.7368 & 0.7894 & 0.7376 & 0.7376 \\
+\hline
+\multirow{}{}{Sigma = 15} & 0.6050 & 0.7763 & 0.7336 & 0.6315 \\
+&  0.7763 &  0.7763 & 0.7336 &  0.6315 \\
+ \hline
+\end{tabular}
+\caption{NN results}
+\label{table:3}
+\end{table}
 % Provide experimental results here
 % Provide 3 different tables --> cluster all k-NN results together into one table, same for SVM and NN
 % Learning curves, validation curves
