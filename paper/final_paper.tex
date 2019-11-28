@@ -165,6 +165,7 @@ Experimental results suggest that applying a low-pass filter and a high-pass fil
 Other than that, the results from different classifiers suggest that SVM is the best classifier for all different image processing techniques and sigma values, with an average of xxx. The worst classifier, in terms of accuracy, is Neural Network (NN) classifier, with an average of xxx. 
 
 Finally, the results suggest that, low sigma values benefit the accuracy score for LPF, whereas high sigma values benefit the accuracy score for HPF processing technique. For LPF+HPF and Median Filter, all the sigma values show similar results across all classifiers. An evaluation of our results and a thorough analysis is presented in the next section. 
+
 \begin{table}[h!]
 \centering
 \begin{tabular}{ |p{1.4cm}||p{1.1cm}|p{1.3cm}|p{1.1cm}|p{1cm}|  }
@@ -236,6 +237,22 @@ NN & LPF &LPF+HPF &HPF & Median\\
 
 \section{Analysis of Results}\label{analysis}
 % Detailed analysis of all results and process
+Since the goal of this paper is to not only propose a classifier that has high accuracy of classification but also to select the best image processing technique for brain tumor identification, there is a need to discuss and evaluate our results. 
+
+To start with, as stated, the best image filtering technique among all three classifiers is LPF+HPF. LPF+HPF is actually a popular choice of processing for medical image processing as it is very helpful to smooth the images and focus on the high frequency content [REF]. Usually, medical image processing is used for diagnosis and identification of certain abnormal tissues in different images. In such a case, LPF+HPF removes the bright parts of the image except the high frequency content such as a tumor and it can be really helpful for classification. Additionally, LPF+HPF images from Figure 6 suggests that the output images are very different from original MRI scans and tend to capture the structure of the brain and kind of segment the brain tissue from bakcground pixels. This is very helpful for the sake of our project as our classifier would be able to focus solely on brain tissue and try to detect abnormal, big cancer tissues in images. Hence, it definitely makes sense that LPF+HPF was the dominant image filtering technique for our experiments. However, we did not only focus on LPF+HPF when building our final classifier as our training data was limited and we wanted to increase the generalization of our data by picking the best validation accuracy scores of different image filter, sigma, and classifier combinations. It is also observed that Median Filter outputted the lowest accuracy values, which makes sense as median filter is generally used to remove significant noise from images and our data does not have that much noise. 
+
+Furthermore, it is observed that LPF benefits from low sigma values for tumor identification. This is because a low-pass filter with very high variance can easily remove the high frequency content and the tumor itself from MRI scans and smooth the image unnecessarily. Hence, a low-pass filter with small variance would only smooth the edges of the skull and remove some noise. As for HPF, high sigma values are dominant as HPF helps to identify and keep the high frequency content in MRI scans. Figure 5 HPF images suggest that the tumor regions are much more dominant compared to the original MRI images. When the dominant LPF+HPF results are analyzed, similar accuracy scores are observed. This makes sense as LPF+HPF with small sigma is already a very significant change for the images and a high sigma would not change the images that much or affect the tumor classification. A similar argument can also be constructed for Median Filter images, as a very high variance would not change the result of classification because of the lack of noise in images. 
+
+Finally, it is important to discuss why some classifiers worked better than others after the application of image processing techniques. As stated, SVM classifier turned out to be the best classifier in terms of accuracy and false negatives. We believe the reason for this is our limited training data as SVM tends to perform well with a low amount of training data. SVM focuses on maximizing the margin between the support vectors and creates the most optimal decision boundary. By using a Gaussian RBF kernel for our SVM classifier, we made sure that our data is close to being linearly separable. Additionally, Figure 9 shows the learning and validation curves of SVM classifier for LPF+HPF filtering. The learning curve suggests that there is some sort of overfitting with our limited training data, but addition of training examples definitely increases the validation score. Hence, we can argue that different methods such as data augmentation could be used to increase training data, which would also increase the validation accuracy. Instead of data augmentation, we used image processing and ensemble learning to increase the final accuracy. The validation curve suggests that a larger-margin hyperplane is better for tumor identification. 
+
+Other than SVM, kNN and NN classifiers are used in this project. Even though kNN performed worse than SVM, it is important to state kNN still had some high accuracy values for equalized version of images. With LPF+HPF, kNN was able to beat the 85\% accuracy threshold and showed promising results. LPF+HPF worked very well for kNN as LPF+HPF almost created binary images with brain tissues and a nearest-neighbor approach was able to detect the tumor very well. We believe the other filtering techniques did not work well with kNN because there were too much detail in those images compared to LPF+HPF. For kNN classifier, after using cross-validation, 7 nearest neighbors are used as the k parameter. It is important to note that, the number of neighbors did not affect the accuracy results significantly, as a weighted distance approach is used and some imaging filters outputted complex images. Without weighted distance approrach, the accuracy results turned out to be lower. At the end, we still argue that kNN classifier can be used for tumor identification when certain image processing techniques such as LPF+HPF is used. 
+
+Finally, NN classifier also showed worse results, which was interesting. We argue that lack of training data caused this performance. It is also observed that different sigma values or different image filters did not help with the accuracy values that much, as the NN classifier itself just showed bad performance with the given data. The NN classifier was also optimized using cross validation. An adaptive learning rate and ReLU activation function is selected for the Neural Network. Even though our NN showed low accuracy results, we believe a Convolutional Neural Network (CNN) approach should also be considered for future experiments. However, with limited training data, it would be hard to get high accuracies with any type of neural network.  
+
+After analyzing all our experimental results of validation accuracies, we created our final classifier that is based on ensemble learning. We chose SVM as the dominant classifier and selected the best image filter/sigma combinations. We chose ensemble learning approach to combat with overfitting of SVM classifier and to generalize the limited training data. At the end, ensemble learning turned out to be very helpful to reduce overfitting and increase generalization. The final confusion matrix of our final classifier is shown in Figure 10. The matrix suggests that ensemble classifier outputted an accuracy value of 87\% and a false negative rate of 2\%. Hence, we observe that ensemble learning was helpful to increase accuracy and to minimize the number of false negatives. 
+
+At the end, when our final classifier is analyzed, it is important to note the low rate of false negatives. We argue that the false negative rate is more significant than our final accuracy value in the domain of healthcare. For brain tumor identification, a high accuracy with a high number of false negatives can still cause devastating results for patients and might be life threatening. 
+
 % Learning curves, validation curves
 % Final Confusion Matrix
 % Analyze the results for each filter, different sigma values, and for each ML algorithm
@@ -244,8 +261,21 @@ NN & LPF &LPF+HPF &HPF & Median\\
 % How helpful was ensemble learning? Why --> generalization
 % Discuss false negatives and accuracy 
 
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.25]{learning_curve}
+\includegraphics[scale=0.25]{validation_curve}
+\caption{SVM learning and validation curves from LPF+HPF processing.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.35]{final_confusion_matrix}
+\caption{Final confusion matrix from our ensemble learning classifier.}
+\end{figure}
+
 \section{Conclusion and Future Work}\label{conclusion}
-% Briefly summarize main ideas of project
+% Briefly summarize main ideas of project --> Best image filter, best classifier, false negatives etc. 
 % Discuss future work such as tumor segmentation
 
 
