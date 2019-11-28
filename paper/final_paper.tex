@@ -70,7 +70,7 @@ Firstly, Praveen \cite{b3} introduced the use of image processing and segmentati
 
 Apart from image processing or segmentation, Ari et. al \cite{b5} used deep learning to classify brain tumors by focusing on extreme learning machine local receptive fields (ELM-LRF) based tumor classification. Their work showed very promising accuracy results. Similarly, Seetha et. al \cite{b6} used convolutional neural networks with deep architecture and small kernels to classify brain tumors. By setting the weights of neurons to small values, their results were also very promising. The only problem with deep learning approaches is the fact that they usually need lots of training data. 
 
-As compared to these works, we experiments with a wide range of image processing techniques and we analyze the best imaging filter to use for tumor detection. Even though our accuracy value is not very high compared to works that used deep learning, we propose a classifier that can work well with limited amount of training data. To the best of our knowledge, this project is the first to apply ensemble learning for tumor identification. Finally, this work is also the only one that tries to minimize false negatives as well as accuracy, and discuss the results. Hence, we believe our contribution to brain tumor classification is significant.
+As compared to these works, we experiment with a wide range of image processing techniques and we analyze the best imaging filter to use for tumor detection. Even though our accuracy value is not very high compared to works that used deep learning, we propose a classifier that can work well with limited amount of training data. To the best of our knowledge, this project is the first to apply ensemble learning for tumor identification. Finally, this work is also the only one that tries to minimize false negatives as well as accuracy, and discuss the results. Hence, we believe our contribution to brain tumor classification is significant.
 
 
 \section{Methodology}\label{method}
@@ -83,7 +83,7 @@ As compared to these works, we experiments with a wide range of image processing
 % Explain our methodology behind the project
 % Talk briefly about resizing and grayscale. Maybe put the graph on image sizes? 
 
-For this project, we used an MRI Scan dataset that has a total of 255 images. The dataset is balanced, where there are 156 positive images and 99 negative images. From the 255 images, 70\% is used for training and 30\% is used for testing. After that, all the images are resized to a certain size through bicubic interpolation and each image is converted to grayscale. This was because the MRI scans usually consist of black and white pixels and RGB colors does not contribute to identification of tumors. Note that the methodology behind this project is shown in Figure 1.
+For this project, we used an MRI Scan dataset that has a total of 255 images. The dataset is balanced, where there are 156 positive images and 99 negative images. From the 255 images, 70\% is used for training and 30\% is used for testing. After that, all the images are resized to a certain size and each image is converted to grayscale. This was because the MRI scans usually consist of black and white pixels and RGB colors does not contribute to identification of tumors. Note that the methodology behind this project is shown in Figure 1.
 
 \subsection{Image Preprocessing}
 % Describe the equalization and contrast images
@@ -105,7 +105,7 @@ In the following example (Figure 3), the tumor stands out by the luminance diffe
 \end{figure}
 
 \paragraph*{Equalization}
-In the following example (Figure 4), there is no clear tumor (and in fact there is no tumor, but we don't know it beforehand), and most pixels are concentrated around a certain gray value, making it difficult to distinguish details. Thus our hypothesis is that histogram equalization can help distinguishing details, for example distinguishing a tumor when its luminance is close to healthy brain tissue.
+In the following example (Figure 4), there is no clear tumor (and in fact there is no tumor, but we don't know it beforehand), and most pixels are concentrated around a certain gray value, making it difficult to distinguish details. Thus our hypothesis is that histogram equalization can help distinguishing details, for example distinguishing a tumor when its luminance is close to healthy brain tissue. \\
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.33]{figures/Equalizing.png}
@@ -114,42 +114,31 @@ In the following example (Figure 4), there is no clear tumor (and in fact there 
 
 \subsection{Image Filtering}
 % Describe and explain the different filters 
-A low pass filter is used for smoothing the images and it also helps in removing the high frequency components and noise in the image. We have applied this filter with various sigma values to the contrast and equalized images.
-We have also used the high pass filter with various sigma values on the contrast and equalized images. It helps us to do the training of dataset and classification on the tumor region in the image using the high frequency content in the image.
-We have also combined the above two filters to filter the images in our dataset. So, we first applied the low pass filter and then the high pass filter and it helped us to remove the noise in the images and then perform the classification on the relatively high frequency content in the image.
-Finally we have used the median filter to filter the images as it gives good quality images for the classification part of our project. It takes the median of the neighborhood of each of the pixels in the image and replaces the specified pixel by that value. 
-% Provide examples of filtered images (one image from each filtering is fine)
+For image filtering, a low pass filter (LPF) is used to smooth the images and remove the high frequency components and noise in the images. LPF is applied with various sigma values to the contrast and equalized images. Additionally, a high pass filter (HPF) is used with various sigma values on the contrast and equalized images. HPF helped us to concentrate on the high frequency regions in MRI scans and we assumed that the tumors in the images had high frequency. Figure 5 shows example MRI scans after LPF and HPF filtering, whereas Figure 7 presents the general structure and visualization of both filters. 
+
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.43]{figures/lpf.JPG}
-\caption{Low pass filtered images.}
-\end{figure}
+\includegraphics[scale=0.39]{figures/hpf.JPG}
+\caption{LPF and HPF image examples respectively.}
+\end{figure} 
+
+We also combined the above two filters to filter the images in our dataset. Specifically, we first applied the low-pass filter and then the high-pass filter (LPF+HPF) as it helped us to remove the noise in the images and then perform the classification on the relatively high frequency content in the image. Finally, we used the Median Filter to filter the images as it ouputs good quality images for the classification part of our project. The filter takes the median of the neighborhood of each of the pixels in the image and replaces the specified pixel by that value. Example images after applying LPF+HPF and Median Filter is shown in Figure 6.
+
+% Provide examples of filtered images (one image from each filtering is fine)
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.40]{figures/hpf.JPG}
-\caption{High pass filtered images.}
-\end{figure}
-\begin{figure}[h]
-\centering
-\includegraphics[scale=0.43]{figures/lpf_hpf.JPG}
-\caption{Low pass + high pass filtered images.}
-\end{figure}
-\begin{figure}[h]
-\centering
-\includegraphics[scale=0.43]{figures/median.JPG}
-\caption{Median filtered images.}
+\includegraphics[scale=0.40]{figures/lpf_hpf.JPG}
+\includegraphics[scale=0.46]{figures/median.JPG}
+\caption{LPF+HPF and Median image examples respectively.}
 \end{figure}
 
 % Note that, the filters used are GAUSSIAN --> would be nice to visualize the filters in a graph
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.4]{figures/hpf_filter.JPG}
-\caption{Visualization of HPF.}
-\end{figure}
-\begin{figure}[h]
-\centering
 \includegraphics[scale=0.4]{figures/lpf_filter.JPG}
-\caption{Visualization of LPF.}
+\includegraphics[scale=0.32]{figures/hpf_filter.JPG}
+\caption{Visualization of Gaussian LPF and HPF respectively.}
 \end{figure}
 
 \subsection{Machine Learning}
@@ -160,9 +149,22 @@ After creating the contrasted, equalized versions of the dataset and applying di
 After choosing the algorithms, the dataset is split into training, validation, and testing. As stated before, 70\% of data is used for training and 30\% of training set is used for validation. Then, all the specified machine learning algorithms are applied to the training set and cross-validation approach is used to tune the parameters of each algorithm. After the optimization of the classifiers, accuracy results are collected for different classifiers, different image filters, and their different sigma values. Such results are presented in section 3. 
 
 % Ensemble Learning
-Finally, best 8 classifier/filter/sigma combinations that had the maximum but different accuracies are selected for ensemble learning. Ensemble learning is applied because some of the classifiers had overfitting and there was a need to generalize the data better. At the end, the most common prediction from the 8 classifiers is taken as the final result. In the case of a tie, the classifier predicts a positive instance to lower the number of false negatives.
+Finally, best 8 classifier/filter/sigma combinations that had the maximum but different accuracies are selected for ensemble learning. Ensemble learning is applied because some of the classifiers had overfitting and there was a need to generalize the data better. At the end, the most common prediction from the 8 classifiers is taken as the final result. In the case of a tie, the classifier predicts a positive instance to lower the number of false negatives. Figure 8 shows our final classifier with best classifier and sigma selections.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.1]{final_classifier_diagram}
+\caption{Final classifier diagram for brain tumor identification that is based on ensemble learning.}
+\end{figure}
 
 \section{Experimental Results}\label{results}
+Tables 1 through 3 present and summarize our experimental results for this project. As stated, we experimented with a wide range of imaging filters with different sigma values. For each sigma value, accuracy result from imaging filters are collected from both contrasted and equalized versions of MRI images. The first row of accuracy values in each table provides contrast image values, whereas the second rows show the accuracy values of equalized images. 
+
+Experimental results suggest that applying a low-pass filter and a high-pass filter (LPF+HPF) outputted the best accuracy values among all classifiers on average. Specifically, SVM classifier had an average of 0.8247 from LPF+HPF technique among all sigma values and both contrasted and equalized images. The worst filter in terms of accuracy among all classifiers was the median filter, with an average of 0.7353. 
+
+Other than that, the results from different classifiers suggest that SVM is the best classifier for all different image processing techniques and sigma values, with an average of xxx. The worst classifier, in terms of accuracy, is Neural Network (NN) classifier, with an average of xxx. 
+
+Finally, the results suggest that, low sigma values benefit the accuracy score for LPF, whereas high sigma values benefit the accuracy score for HPF processing technique. For LPF+HPF and Median Filter, all the sigma values show similar results across all classifiers. An evaluation of our results and a thorough analysis is presented in the next section. 
 \begin{table}[h!]
 \centering
 \begin{tabular}{ |p{1.4cm}||p{1.1cm}|p{1.3cm}|p{1.1cm}|p{1cm}|  }
@@ -231,11 +233,11 @@ NN & LPF &LPF+HPF &HPF & Median\\
 \end{table}
 % Provide experimental results here
 % Provide 3 different tables --> cluster all k-NN results together into one table, same for SVM and NN
-% Learning curves, validation curves
-% Final Confusion Matrix 
 
 \section{Analysis of Results}\label{analysis}
 % Detailed analysis of all results and process
+% Learning curves, validation curves
+% Final Confusion Matrix
 % Analyze the results for each filter, different sigma values, and for each ML algorithm
 % Which image filter worked the best? --> LPF+HPF analyze other ones too
 % Which ML algorithm worked the best? --> SVM analyze other ones too --> why did NN not do good? 
