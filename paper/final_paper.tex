@@ -120,7 +120,7 @@ For image filtering, a low pass filter (LPF) is used to smooth the images and re
 \centering
 \includegraphics[scale=0.43]{figures/lpf.JPG}
 \includegraphics[scale=0.39]{figures/hpf.JPG}
-\caption{LPF and HPF image examples respectively.}
+\caption{LPF(sigma=2) and HPF(sigma=10) applied on equalized image examples respectively.}
 \end{figure} 
 
 We also combined the above two filters to filter the images in our dataset. Specifically, we first applied the low-pass filter and then the high-pass filter (LPF+HPF) as it helped us to remove the noise in the images and then perform the classification on the relatively high frequency content in the image. Finally, we used the Median Filter to filter the images as it ouputs good quality images for the classification part of our project. The filter takes the median of the neighborhood of each of the pixels in the image and replaces the specified pixel by that value. Example images after applying LPF+HPF and Median Filter is shown in Figure 6.
@@ -130,7 +130,7 @@ We also combined the above two filters to filter the images in our dataset. Spec
 \centering
 \includegraphics[scale=0.40]{figures/lpf_hpf.JPG}
 \includegraphics[scale=0.46]{figures/median.JPG}
-\caption{LPF+HPF and Median image examples respectively.}
+\caption{LPF+HPF(sigma=5) and Median filter(\(\(sigma\)\)=5) applied on equalized images examples respectively.}
 \end{figure}
 
 % Note that, the filters used are GAUSSIAN --> would be nice to visualize the filters in a graph
@@ -184,6 +184,9 @@ Finally, the results suggest that, low sigma values benefit the accuracy score f
 \multirow{2}{*}{Sigma = 15} &	0.8157&	0.8421&	0.8555&	0.8157\\
 & 0.8157&	 0.8289&	  0.8157&  0.7894\\
  \hline
+ \multirow{2}{*}{Avg. accuracy} &0.8223 & 0.8273 & 0.7828 & 0.8031 \\
+&0.8256 & 0.8223 & 0.8031 & 0.8024 \\
+\hline
 \end{tabular} \\
 \caption{SVM results}
 \label{table:1}
@@ -206,6 +209,9 @@ Finally, the results suggest that, low sigma values benefit the accuracy score f
 \multirow{2}{*}{Sigma = 15} & 0.7763  & 0.8233  & 0.6766 & 0.6050 \\
 & 0.7336 &  0.8684 & 0.7243 &  0.7763 \\
  \hline
+ \multirow{2}{*}{Avg. accuracy} &	0.6945 & 0.8140 & 0.7486 & 0.5919   \\
+&0.7492 & 0.8288 & 0.7574 & 0.7862 \\ 
+\hline
 \end{tabular}
 \caption{KNN results}
 \label{table:2}
@@ -228,6 +234,9 @@ NN & LPF &LPF+HPF &HPF & Median\\
 \multirow{2}{*}{Sigma = 15} & 0.6050 & 0.7763 & 0.7336 & 0.6315 \\
 &  0.7763 &  0.7763 & 0.7336 &  0.6315 \\
  \hline
+  \multirow{2}{*}{Avg. accuracy} &0.7039 & 0.7934  & 0.6649 & 0.7076  \\
+&0.7603 & 0.79273 & 0.7333 & 0.7240   \\
+\hline
 \end{tabular}
 \caption{NN results}
 \label{table:3}
