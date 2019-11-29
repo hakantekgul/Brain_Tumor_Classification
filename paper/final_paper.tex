@@ -301,8 +301,27 @@ At the end, when our final classifier is analyzed, it is important to note the l
 % Discuss false negatives and accuracy 
 
 \section{Conclusion and Future Work}\label{conclusion}
-% Briefly summarize main ideas of project --> Best image filter, best classifier, false negatives etc. 
-% Discuss future work such as tumor segmentation
+%Restate the topic
+Brain cancers and tumors must be diagnosed as early as possible to provide the good treatment in time.
+
+%Restate your thesis
+Image processing and machine learning techniques can help detecting tumors as a prior diagnosis from doctors.
+
+%Briefly summarize your main points
+What comes out of our study is :
+\begin{itemize}
+\item Adding contrast to images helps when the tumors already stands out
+\item Equalizing the histograms helps when the tumors is of a close luminance to healthy brain tissue
+\item LPF+HPF give the best results among all classifiers on average
+\item A LPF alone gives better accuracy with small sigma values (around 2)
+\item A HPF alone gives better accuracy with bigger sigma values (above 10)
+\item SVM classifier gives best accuracy overall
+\item Ensemble learning helps getting the most out of all image preprocessing techniques
+\end{itemize}
+The final accuracy obtained is 87\% with a false negative rate of 2\%.
+
+%Make a call to action
+The small number of false negatives is encouraging for tumor detection. Yet another contemporary stake is tumor identification : knowing wether there is a tumor or not is a thing, but knowing what type of tumor it is and at what stage of development it is, is still a big challenge and it is decisive for doctors to know what treatment to give and at what time.
 
 
 \begin{thebibliography}{00}
