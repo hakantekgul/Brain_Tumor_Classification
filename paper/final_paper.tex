@@ -39,7 +39,7 @@ mgupta325@gatech.edu}
 \begin{abstract}
 When diagnosed at a late stage, brain cancers and tumors provide very short life expectancy and a high mortality rate because of their aggressive nature. In order to diagnose and detect the tumor on the brain at the earliest stage possible, various medical imaging techniques such as Computed Tomography (CT) or Magnetic Resonance Imaging (MRI) are used. Unfortunately, the diagnosis and treatment of the tumor depends highly on the physician’s medical knowledge. Hence, many different systems have been proposed in the past decade to automatically detect brain tumors by using machine learning. One major problem with these approaches is the fact that they usually need lots of training data (MRI Scans).  
 
-In this project, we detect brain tumors from MRI images with a limited amount of training data, around 120 images. Specifically, we use an ensemble learning approach that is based on Support Vector Machines (SVM). After applying image processing techniques such as low-pass filtering to all the images, the most common prediction from different SVM classifiers is chosen for a testing image. Validation accuracies are used to select the best image processing techniques and their optimal parameters. Our experimental results suggest that the Ensemble Classifier achieves an accuracy of 87\% with low time complexity.
+In this project, we detect brain tumors from MRI images with a limited amount of training data, around 120 images. Specifically, we use an ensemble learning approach that is based on Support Vector Machines (SVM). After applying image processing techniques such as low-pass filtering to all the images, the most common prediction from different SVM classifiers is chosen for a testing image. Validation accuracies are used to select the best image processing techniques and their optimal parameters. Our experimental results suggest that the Ensemble Classifier achieves an accuracy of 87\% with 2\% false negative rate.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -59,7 +59,7 @@ In this work, we propose to detect brain tumors from MRI images with a limited a
   \item We experiment with three different machine learning algorithms and state their accuracy for differrent image processing techniques.
   \item We propose an ensemble learning approach that successfully identifies a tumor in the brain with a minimum number of false negatives. 
 \end{itemize}
-Our experimental results suggest that LPF+HPF is the best filter to use for tumor detection, with an average classification accuracy of 84\%. Additionaly, we observed that Support Vector Machines (SVM) gives the optimal results in terms of classification. Finally, our ensemble learning approach that is based on different filters and Support Vector Machines outputs a classification accuracy of 87\% and a 2\% false negative rate. 
+Our experimental results suggest that LPF+HPF is the best filter to use for tumor detection, with an average classification accuracy of 83\%. Additionaly, we observed that Support Vector Machines (SVM) gives the optimal results in terms of classification. Finally, our ensemble learning approach that is based on different filters and Support Vector Machines outputs a classification accuracy of 87\% and a 2\% false negative rate. 
 
 \subsection{Related Work} 
 % Discuss some related work. Provide around 5-6 projects about tumor classification and summarize their improvements/results
@@ -97,7 +97,7 @@ To be fed into the classifier, the images had to be resized to a common size. In
 
 From this homogeneous dataset, two sub-datasets were created : the first one adds contrast to the images, the second one equalizes the histograms.\\
 \paragraph*{Contrast addition}
-In the following example (Figure 3), the tumor stands out by the luminance difference with healthy brain tissue. Thus our hypothesis is that adding contrast can help emphasizing the even more the tumor. The method used is a sigmoïd transformation : for every pixel $x \in [0;255]$, $$x\leftarrow x\times \frac{1}{1+e^{-0.02(x-127)}}$$
+In Figure 3, the tumor stands out by the luminance difference with healthy brain tissue. Thus our hypothesis is that adding contrast can help emphasizing on the tumor more compared to original images. The method used is a sigmoïd transformation : for every pixel $x \in [0;255]$, $$x\leftarrow x\times \frac{1}{1+e^{-0.02(x-127)}}$$
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.33]{figures/Contrasting.png}
@@ -105,7 +105,7 @@ In the following example (Figure 3), the tumor stands out by the luminance diffe
 \end{figure}
 
 \paragraph*{Equalization}
-In the following example (Figure 4), there is no clear tumor (and in fact there is no tumor, but we don't know it beforehand), and most pixels are concentrated around a certain gray value, making it difficult to distinguish details. Thus our hypothesis is that histogram equalization can help distinguishing details, for example distinguishing a tumor when its luminance is close to healthy brain tissue. \\
+In Figure 4, there is not a clear tumor (and in fact there is no tumor, but we don't know it beforehand), and most pixels are concentrated around a certain gray value, making it difficult to distinguish the details. Thus our hypothesis is that histogram equalization can help distinguishing details, for example distinguishing a tumor when its luminance is close to healthy brain tissue. \\
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.33]{figures/Equalizing.png}
@@ -114,7 +114,7 @@ In the following example (Figure 4), there is no clear tumor (and in fact there 
 
 \subsection{Image Filtering}
 % Describe and explain the different filters 
-For image filtering, a low pass filter (LPF) is used to smooth the images and remove the high frequency components and noise in the images. LPF is applied with various sigma values to the contrast and equalized images. Additionally, a high pass filter (HPF) is used with various sigma values on the contrast and equalized images. HPF helped us to concentrate on the high frequency regions in MRI scans and we assumed that the tumors in the images had high frequency. Figure 5 shows example MRI scans after LPF and HPF filtering, whereas Figure 7 presents the general structure and visualization of both filters. 
+After creating the contrasted and equalized versions of the dataset, image filtering is applied. Firstly, a low pass filter (LPF) is used to smooth the images and remove the high frequency components and noise in the images. LPF is applied with various sigma values to the contrast and equalized images. Additionally, a high pass filter (HPF) is used with various sigma values on the contrast and equalized images. HPF helped us to concentrate on the high frequency regions in MRI scans and we assumed that the tumors in the images had high frequency. Figure 5 shows example MRI scans after LPF and HPF filtering, whereas Figure 7 presents the general structure and visualization of both filters. 
 
 \begin{figure}[h]
 \centering
@@ -149,7 +149,7 @@ After creating the contrasted, equalized versions of the dataset and applying di
 After choosing the algorithms, the dataset is split into training, validation, and testing. As stated before, 70\% of data is used for training and 30\% of training set is used for validation. Then, all the specified machine learning algorithms are applied to the training set and cross-validation approach is used to tune the parameters of each algorithm. After the optimization of the classifiers, accuracy results are collected for different classifiers, different image filters, and their different sigma values. Such results are presented in section 3. 
 
 % Ensemble Learning
-Finally, best 8 classifier/filter/sigma combinations that had the maximum but different accuracies are selected for ensemble learning. Ensemble learning is applied because some of the classifiers had overfitting and there was a need to generalize the data better. At the end, the most common prediction from the 8 classifiers is taken as the final result. In the case of a tie, the classifier predicts a positive instance to lower the number of false negatives. Figure 8 shows our final classifier with best classifier and sigma selections.
+Finally, best 8 classifier/filter/sigma combinations that had the maximum but different accuracies are selected for ensemble learning. Ensemble learning is applied because some of the classifiers had overfitting and there was a need to generalize the data. At the end, the most common prediction from the 8 classifiers is taken as the final result. In the case of a tie, the classifier predicts a positive instance to lower the number of false negatives. Figure 8 shows our final classifier with best classifier and sigma selections.
 
 \begin{figure}[h]
 \centering
@@ -321,7 +321,7 @@ What comes out of our study is :
 The final accuracy obtained is 87\% with a false negative rate of 2\%.
 
 %Make a call to action
-The small number of false negatives is encouraging for tumor detection. Yet another contemporary stake is tumor identification : knowing wether there is a tumor or not is a thing, but knowing what type of tumor it is and at what stage of development it is, is still a big challenge and it is decisive for doctors to know what treatment to give and at what time.
+The small number of false negatives is encouraging for tumor detection. Yet another contemporary stake is tumor type identification : knowing wether there is a tumor or not is a thing, but knowing what type of tumor it is and at what stage of development it is, is still a big challenge and it is decisive for doctors to know what treatment to give and at what time. Hence, for future work, tumor type classification should be considered. Other than that, tumor segmentation is also very important for the physicians to locate and analyze the shape of the tumor. With tumor segmentation, type of tumor can also be predicted. Finally, it is important to note that artificial intelligence in medical imaging is definitely interesting but it is also very challenging and requires a great amount of work to eliminate the pyhsicians' opinion or diagnosis. 
 
 
 \begin{thebibliography}{00}

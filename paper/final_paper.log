@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  29 NOV 2019 12:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  1 DEC 2019 17:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -551,6 +551,10 @@ File: figures/hpf.JPG Graphic file (type jpg)
 <use figures/hpf.JPG>
 Package pdftex.def Info: figures/hpf.JPG  used on input line 122.
 (pdftex.def)             Requested size: 124.48456pt x 99.52893pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 <figures/lpf_hpf.JPG, id=28, 293.59688pt x 236.38312pt>
 File: figures/lpf_hpf.JPG Graphic file (type jpg)
 <use figures/lpf_hpf.JPG>
@@ -561,6 +565,9 @@ File: figures/median.JPG Graphic file (type jpg)
 <use figures/median.JPG>
 Package pdftex.def Info: figures/median.JPG  used on input line 132.
 (pdftex.def)             Requested size: 117.0487pt x 94.53934pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 <figures/lpf_filter.JPG, id=30, 209.28188pt x 152.06813pt>
 File: figures/lpf_filter.JPG Graphic file (type jpg)
 <use figures/lpf_filter.JPG>
@@ -571,15 +578,19 @@ File: figures/hpf_filter.JPG Graphic file (type jpg)
 <use figures/hpf_filter.JPG>
 Package pdftex.def Info: figures/hpf_filter.JPG  used on input line 140.
 (pdftex.def)             Requested size: 77.57137pt x 61.67165pt.
- [3 <./figures/Contrasting.png> <./figures/Equalizing.png> <./figures/lpf.JPG> 
-<./figures/hpf.JPG> <./figures/lpf_hpf.JPG> <./figures/median.JPG> <./figures/l
-pf_filter.JPG> <./figures/hpf_filter.JPG>]
-<final_classifier_diagram.png, id=37, 2215.27625pt x 1133.23375pt>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<final_classifier_diagram.png, id=32, 2215.27625pt x 1133.23375pt>
 File: final_classifier_diagram.png Graphic file (type png)
 <use final_classifier_diagram.png>
 Package pdftex.def Info: final_classifier_diagram.png  used on input line 156.
 (pdftex.def)             Requested size: 221.5406pt x 113.33pt.
 
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[3 <./figures/Contrasting.png> <./figures/Equalizing.png> <./figures/lpf.JPG> <
+./figures/hpf.JPG> <./figures/lpf_hpf.JPG> <./figures/median.JPG>]
 Overfull \hbox (6.45418pt too wide) in paragraph at lines 189--189
 [][]| 
  []
@@ -603,7 +614,8 @@ Overfull \hbox (6.45418pt too wide) in paragraph at lines 241--241
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[4 <./final_classifier_diagram.png>]
+[4 <./figures/lpf_filter.JPG> <./figures/hpf_filter.JPG> <./final_classifier_di
+agram.png>]
 <learning_curve.png, id=42, 462.528pt x 346.896pt>
 File: learning_curve.png Graphic file (type png)
 <use learning_curve.png>
@@ -636,7 +648,7 @@ Before submitting the final camera ready copy, remember to:
 Here is how much of TeX's memory you used:
  4546 strings out of 492616
  66556 string characters out of 6129482
- 160725 words of memory out of 5000000
+ 159725 words of memory out of 5000000
  8381 multiletter control sequences out of 15000+600000
  43950 words of font info for 98 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -652,7 +664,7 @@ ype1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type
 rw/times/utmb8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/u
 tmbi8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmr8a.pfb
 ></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on final_paper.pdf (6 pages, 1109964 bytes).
+Output written on final_paper.pdf (6 pages, 1111272 bytes).
 PDF statistics:
  87 PDF objects out of 1000 (max. 8388607)
  46 compressed objects within 1 object stream
